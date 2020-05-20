@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Sportclub.UI.Models
+namespace SportclubEindwerk.Model
 {
    public class Member
     {
-        [Key]
-        
+        [Key] 
         public Guid MemberId { get; set; }
         [Required]
         public string FirstName { get; set; }

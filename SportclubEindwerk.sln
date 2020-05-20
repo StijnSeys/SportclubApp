@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportclubEindwerk", "SportclubEindwerk\SportclubEindwerk.csproj", "{419FAD8B-3CBE-4EA4-8D75-3A9DB2569C3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sportclub.UI", "SportclubEindwerk\Sportclub.UI.csproj", "{419FAD8B-3CBE-4EA4-8D75-3A9DB2569C3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportClub.Data", "SportClubData\SportClub.Data.csproj", "{295F2B52-5E63-4CB3-B2C8-379B84238811}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{419FAD8B-3CBE-4EA4-8D75-3A9DB2569C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{419FAD8B-3CBE-4EA4-8D75-3A9DB2569C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{419FAD8B-3CBE-4EA4-8D75-3A9DB2569C3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{295F2B52-5E63-4CB3-B2C8-379B84238811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{295F2B52-5E63-4CB3-B2C8-379B84238811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{295F2B52-5E63-4CB3-B2C8-379B84238811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{295F2B52-5E63-4CB3-B2C8-379B84238811}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

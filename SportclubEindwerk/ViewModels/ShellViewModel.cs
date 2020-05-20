@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
-using SportclubEindwerk.Model;
+﻿using Caliburn.Micro;
+using Sportclub.UI.Models;
+using SportClubData.Data;
 
-namespace SportclubEindwerk.ViewModel
+namespace Sportclub.UI.ViewModels
 {
+    //screen caliburn micro
     public class ShellViewModel : Screen
     {
+        private readonly IMemberService _memberService;
         private string _firstName = "Stijn";
         private int _lastName;
         private BindableCollection<Member> _members = new BindableCollection<Member>();
         private Member _selectedMember;
 
 
-        public ShellViewModel()
+        public ShellViewModel(IMemberService memberService)
         {
-            
+            _memberService = memberService;
         }
+
         public string FirstName
         {
             get

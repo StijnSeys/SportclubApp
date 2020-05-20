@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SportclubEindwerk.Data;
 using SportclubEindwerk.Model;
 
 namespace SportclubEindwerk
 {
-    class tryoutDBClass
+ public class tryoutDBClass
     {
 
         public void CheckUpp()
@@ -88,8 +85,20 @@ namespace SportclubEindwerk
                 sportclub.Sports = new List<Sport>{voetbal,tennis};
                 sportclub.Address = address2;
 
+                //adding to db
+                context.SportClubs.Add(sportclub);
+
                 context.Addresses.Add(address);
+                context.Addresses.Add(address2);
+
                 context.Members.Add(member);
+
+                context.Materials.Add(material1);
+                context.Materials.Add(material2);
+
+                context.Sports.Add(voetbal);
+                context.Sports.Add(tennis);
+
                 context.SaveChanges();
 
 

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Sportclub.UI.Models
+
+namespace SportclubEindwerk.Model
 {
    public class SportClub
     {
