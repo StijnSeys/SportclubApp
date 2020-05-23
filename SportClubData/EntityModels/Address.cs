@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SportclubEindwerk.Model
+namespace SportClub.Data.EntityModels
 {
   public class Address
     {
@@ -23,6 +19,6 @@ namespace SportclubEindwerk.Model
 
         public  ICollection<Member> AddressMembers { get; set; }
 
-        public  ICollection<SportClub> AddressSportClubs { get; set; } 
+        public  ICollection<Club> AddressSportClubs { get; set; } 
     }
 }

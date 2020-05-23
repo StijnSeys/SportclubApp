@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SportClub.Data.ServiceContracts;
 
-namespace SportClubData.Data
+namespace SportClub.Data.Services
 {
- public   class AddressService
-    {
+ public class AddressService : IAddresService
+ {
 
     }
 }

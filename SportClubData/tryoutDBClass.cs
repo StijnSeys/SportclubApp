@@ -1,65 +1,82 @@
 ﻿using System;
 using System.Collections.Generic;
-using SportclubEindwerk.Data;
-using SportclubEindwerk.Model;
+using SportClub.Data.DataContext;
+using SportClub.Data.EntityModels;
 
-namespace SportclubEindwerk
+namespace SportClub.Data
 {
  public class tryoutDBClass
     {
 
-        public void CheckUpp()
+        public void DummyData()
         {
-            using (var context = new SportClubDbContext())
+            using (var context = new SportClubDBContext())
             {
                 //dummy member
                 var member = new Member()
                 {
-                    MemberId = Guid.NewGuid(), Email = "Stijnseys@gmail.com", FirstName = "Stijn", LastName = "Seys"
+                    MemberId= Guid.NewGuid(),
+                    Email = "stijnseys@gmail.com",
+                    FirstName = "stijn",
+                    LastName = "seys"
                 };
 
 
                 //dummy sportclub
-                var sportclub = new SportClub()
+                var club = new Club()
                 {
-                    Name = "de dulle sporters", Password = "123456", SportClubId = Guid.NewGuid()
+                    Name = "de dulle sporters",
+                    Password = "123456",
+                    SportClubId =  Guid.NewGuid()
                 };
 
 
-                //Dummy address
+                //dummy address
                 var address = new Address()
                 {
-                    AddressId = Guid.NewGuid(), City = "Kortrijk", Street = "KortrijkStraat", Number = "10A",
-                    PostCode = 8500
+                    AddressId = Guid.NewGuid(),
+                    City = "kortrijk",
+                    Street = "kortrijkstraat",
+                    Number = "10a",
+                    PostCode  = 8500
                 };
                 var address2 = new Address()
                 {
-                    AddressId = Guid.NewGuid(), City = "Kortrijk", Street = "Bissegemstraat", Number = "1",
+                    AddressId = Guid.NewGuid(),
+                    City = "kortrijk",
+                    Street = "bissegemstraat",
+                    Number = "1",
                     PostCode = 8500
                 };
 
 
-                //dummy Sports
+                //dummy sports
                 var voetbal = new Sport()
                 {
-                    SportId = Guid.NewGuid(), Name = "Voetbal"
+                    SportId = Guid.NewGuid(),
+                    Name = "voetbal"
                 };
 
                 var tennis = new Sport()
                 {
-                    SportId = Guid.NewGuid(), Name = "Tennis"
+                    SportId = Guid.NewGuid(),
+                    Name = "tennis"
                 };
 
 
                 //dummy material
-                var  material1 = new Material()
+                var material1 = new Material()
                 {
-                    MaterialId = Guid.NewGuid(), MaterialName = "Voetbal", Price = 20.0m
+                    MaterialId = Guid.NewGuid(),
+                    MaterialName = "voetbal",
+                    Price = 20.0m
                 };
 
                 var material2 = new Material()
                 {
-                    MaterialId = Guid.NewGuid(), MaterialName = "Tennisbal", Price = 10.0m
+                    MaterialId  = Guid.NewGuid(),
+                    MaterialName  = "tennisbal",
+                    Price = 10.0m
                 };
 
 
@@ -69,24 +86,24 @@ namespace SportclubEindwerk
                 material2.Sport = tennis;
 
 
-                member.Address =  address;
-                member.SportClubs = new List<SportClub>{sportclub};
+                member.Address = address;
+                member.SportClubs = new List<Club> { club };
 
-                address2.AddressSportClubs = new List<SportClub>{sportclub};
-                address.AddressMembers = new List<Member>{member};
+                address2.AddressSportClubs = new List<Club> { club };
+                address.AddressMembers = new List<Member> { member };
 
-                voetbal.SportClubs = new List<SportClub>{sportclub};
-                voetbal.SportMaterials = new List<Material>{material1};
+                voetbal.SportClubs = new List<Club> { club };
+                voetbal.SportMaterials = new List<Material> { material1 };
 
-                tennis.SportClubs = new List<SportClub>{sportclub};
-                tennis.SportMaterials = new List<Material>{material2};
+                tennis.SportClubs = new List<Club> { club };
+                tennis.SportMaterials = new List<Material> { material2 };
 
-                sportclub.Members = new List<Member>{member};
-                sportclub.Sports = new List<Sport>{voetbal,tennis};
-                sportclub.Address = address2;
+                club.Members = new List<Member> { member };
+                club.Sports = new List<Sport> { voetbal, tennis };
+                club.Address = address2;
 
                 //adding to db
-                context.SportClubs.Add(sportclub);
+                context.Clubs.Add(club);
 
                 context.Addresses.Add(address);
                 context.Addresses.Add(address2);

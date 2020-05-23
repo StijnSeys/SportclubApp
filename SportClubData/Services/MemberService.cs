@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SportclubEindwerk.Model;
+using SportClub.Data.DataContext;
+using SportClub.Data.EntityModels;
+using SportClub.Data.ServiceContracts;
 
-namespace SportClubData.Data
+namespace SportClub.Data.Services
 {
   public class MemberService : IMemberService
     {
 
-        private readonly DbContext _context;
+        private readonly SportClubDBContext _context;
 
-        public MemberService(DbContext context)
+        public MemberService(SportClubDBContext context)
         {
             _context = context;
         }

@@ -3,32 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
+        mc:Ignorable="d" 
         Title="ShellView" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
+  <DockPanel>
+      <Menu DockPanel.Dock="Top" FontSize="18">
+          <MenuItem Header="_File">
 
-        <TextBlock Text="{Binding Path=FirstName, Mode=OneWay}" Grid.Row="1" Grid.Column="1"></TextBlock>
-        <TextBox MinWidth="100" Grid.Row="2" Grid.Column="1" x:Name="FirstName"></TextBox>
-    </Grid>
+          </MenuItem>
+          <MenuItem Header="_Account">
+              <MenuItem x:Name="LoginScreen" Header="_Login"/>
+          </MenuItem>
+      </Menu>
+        <Grid>
+            <ContentControl x:Name="ActiveItem" Margin="5"></ContentControl>
+        </Grid>
+  </DockPanel>
 </Window>

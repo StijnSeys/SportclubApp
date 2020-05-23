@@ -1,20 +1,21 @@
-﻿namespace SportclubEindwerk.Migrations
+﻿using SportClub.Data.DataContext;
+
+namespace SportClub.Data.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<SportclubEindwerk.Data.SportClubDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<SportClubDBContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
-            ContextKey = "SportclubEindwerk.Data.SportClubDbContext";
+            AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(SportclubEindwerk.Data.SportClubDbContext context)
+        protected override void Seed(SportClubDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

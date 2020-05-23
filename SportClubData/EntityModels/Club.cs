@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-namespace SportclubEindwerk.Model
+namespace SportClub.Data.EntityModels
 {
-   public class SportClub
+    public class Club
     {
         [Key]
         public Guid SportClubId { get; set; }
@@ -15,7 +17,6 @@ namespace SportclubEindwerk.Model
         public string ClubColor { get; set; }
         [Required]
         public string Password { get; set; }
-
 
         public virtual ICollection<Member> Members { get; set; }
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SportClubData.Data
+namespace Sportclub.UI.ViewModels
 {
-  public class SportClubService
+    class RegisterViewModel
     {
     }
 }

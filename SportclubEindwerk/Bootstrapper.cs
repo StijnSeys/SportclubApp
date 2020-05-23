@@ -1,11 +1,17 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using Caliburn.Micro;
+using SportClub.Data;
+using Sportclub.UI.Helpers;
 using Sportclub.UI.ViewModels;
-using SportClubData.Data;
+using SportClub.Data.DataContext;
+using SportClub.Data.ServiceContracts;
+using SportClub.Data.Services;
 
 namespace Sportclub.UI
 {
@@ -17,53 +23,62 @@ namespace Sportclub.UI
         public Bootstrapper()
         {
             Initialize();
-            
-        }
-        protected override void OnStartup(object sender, StartupEventArgs e)
-        {
 
-            RegisterDatabase();
-            RegisterServices();
+            ConventionManager.AddElementConvention<PasswordBox>(
+                PasswordBoxHelper.BoundPasswordProperty,
+                "Password",
+                "PasswordChanged");
 
-            //load the Shellviewmodel on startup
-            DisplayRootViewFor<ShellViewModel>();
-
-            //to fill DB with Dummy content
-           // var dbClass = new tryoutDBClass();
-          //  dbClass.CheckUpp();
         }
 
-        //Methodes to fill the _container for DE
-        private void RegisterDatabase()
+        protected override void Configure()
         {
-            var dbContext = new DbContext("name=SportClubEntities");
-            _container.RegisterInstance(typeof(DbContext), "DbContext", dbContext);
-        }
-
-
-        private void RegisterServices()
-        {
+            _container.Instance(_container);
 
             _container.Singleton<IWindowManager, WindowManager>();
             _container.Singleton<IEventAggregator, EventAggregator>();
 
-            //find all ViewModel classes and put in _container (not good
-            //practice but possible to use in small projects )
+            RegisterDatabase();
+            RegisterServices();
+        }
+
+        //Methodes to fill the _container for DI
+        private void RegisterDatabase()
+        {
+            var dbContext = new SportClubDBContext();
+            _container.RegisterInstance(typeof(SportClubDBContext), "DbContext", dbContext);
+        }
+
+        private void RegisterServices()
+        {
+            
+            //find all ViewModel classes and put in _container (not a good practice but possible to use in small projects )
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
                 .Where(type => type.Name.EndsWith("ViewModel"))
                 .ToList()
-                .ForEach(viewModelType => _container.RegisterPerRequest(viewModelType,null,viewModelType));
+                .ForEach(viewModelType => _container.RegisterPerRequest(viewModelType, null, viewModelType));
 
 
-            //hard coded adding the services for DE
-            _container.RegisterPerRequest(typeof(ISportClubService), null, typeof(SportClubService));
-            _container.RegisterPerRequest(typeof(ISportService), null, typeof(SportService));
-            _container.RegisterPerRequest(typeof(IAddresService), null, typeof(AddressService));
-            _container.RegisterPerRequest(typeof(IMaterialService),null, typeof(MaterialService));
-            _container.RegisterPerRequest(typeof(IMemberService), null, typeof(MemberService));
+            //hard coded adding the services for DI
+            _container.PerRequest<IClubService, ClubService>();
+            _container.PerRequest<ISportService, SportService>();
+            _container.PerRequest<IAddresService, AddressService>();
+            _container.PerRequest<IMemberService, MemberService>();
+            _container.PerRequest<IMaterialService, MaterialService>();
+
         }
 
+        protected override void OnStartup(object sender, StartupEventArgs e)
+        {
+
+            //load the ShellViewmodel on startup
+            DisplayRootViewFor<ShellViewModel>();
+
+            // fill DB with Dummy content
+            var dbClass = new tryoutDBClass();
+            dbClass.DummyData();
+        }
 
         //Configure the container --> Copy/Paste  this is always the same
         protected override object GetInstance(Type service, string key)
