@@ -1,85 +1,57 @@
 ﻿using Caliburn.Micro;
-using Sportclub.UI.Models;
-using SportClub.Data.ServiceContracts;
+using Sportclub.UI.EventModels;
+using SportClub.UI.EventModels;
 
-namespace Sportclub.UI.ViewModels
+namespace SportClub.UI.ViewModels
 {
-    //Conductor caliburn micro
-    public class ShellViewModel : Conductor<object>
+    //Conductor caliburn micro 
+    public class ShellViewModel : Conductor<object>, IHandle<CreateAccountEvent>, IHandle<MainScreenEvent>, IHandle<LoginEvent>
     {
-        public ShellViewModel(LoginViewModel loginViewModel)
+        private readonly SimpleContainer _container;
+
+        
+        public ShellViewModel(IEventAggregator events, SimpleContainer container)
         {
-            ActivateItem(loginViewModel);
+          
+            
+            _container = container;
+
+            //Adding and listening to events 
+            events.Subscribe(this);
+
+            //Create instance of viewModels to trigger the handler inside the viewModels for input(Good practice ??? )
+            _container.GetInstance<MainScreenViewModel>();
+
+
+            //open ViewModel on startup
+            ActivateItem(_container.GetInstance<LoginViewModel>());
+        }
+
+        public sealed override void ActivateItem(object item)
+        {
+            base.ActivateItem(item);
         }
 
 
+        public void Handle(CreateAccountEvent message)
+
+        {
+
+            ActivateItem(_container.GetInstance<RegisterViewModel>());
+
+        }
+        public void Handle(LoginEvent message)
+        {
+            
+            ActivateItem(_container.GetInstance<LoginViewModel>());
+
+        }
+
+        public void Handle(MainScreenEvent message)
+        {
+            
+            ActivateItem(_container.GetInstance<MainScreenViewModel>());
+        }
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//TRYOUT CONTENT
-//public string FirstName
-//{
-//    get
-//    {
-//        return _firstName;
-
-//    }
-//    set
-//    {
-//        _firstName = value;
-//        NotifyOfPropertyChange(() => FirstName);
-//        NotifyOfPropertyChange(() => FullName);
-//    }
-
-//}
-
-//public int LastName
-//{
-//    get
-//    {
-//        return _lastName; 
-
-//    }
-//    set
-//    {
-//        _lastName = value;
-//        NotifyOfPropertyChange(() => LastName);
-
-//    }
-//}
-
-//public string FullName
-//{
-//    get { return $"{FirstName} {LastName}"; }
-//}
-
-////mvvm list
-//public BindableCollection<Member> Members
-//{
-//    get { return _members; }
-//    set { _members = value; }
-//}
-
-//public Member SelectedMember
-//{
-//    get { return _selectedMember; }
-//    set
-//    {
-//        _selectedMember = value;
-//        NotifyOfPropertyChange(() => SelectedMember);
-//    }
-//}

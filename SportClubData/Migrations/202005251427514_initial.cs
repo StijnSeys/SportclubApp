@@ -1,0 +1,18 @@
+﻿namespace SportClub.Data.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class initial : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.Clubs", "ClubLogo");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.Clubs", "ClubLogo", c => c.String());
+        }
+    }
+}

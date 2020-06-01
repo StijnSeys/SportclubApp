@@ -8,7 +8,7 @@ namespace SportClub.Data.DataContext
 
         public SportClubDBContext() : base("name=SportClubEntities")
         { 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SportClubDBContext, SportClub.Data.Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SportClubDBContext, Migrations.Configuration>());
         }
         
         public  DbSet<Address> Addresses { get; set; }
@@ -18,7 +18,6 @@ namespace SportClub.Data.DataContext
         public DbSet<Club> Clubs { get; set; }
 
 
-        //??
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

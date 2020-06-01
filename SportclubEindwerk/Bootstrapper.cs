@@ -1,21 +1,20 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
 using Caliburn.Micro;
-using SportClub.Data;
 using Sportclub.UI.Helpers;
-using Sportclub.UI.ViewModels;
+using SportClub.UI.ViewModels;
 using SportClub.Data.DataContext;
 using SportClub.Data.ServiceContracts;
 using SportClub.Data.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using SportClub.Data;
 
 namespace Sportclub.UI
 {
-  public class Bootstrapper : BootstrapperBase
+    public class Bootstrapper : BootstrapperBase
     {
         //dependency injection from caliburn micro
         private readonly SimpleContainer _container = new SimpleContainer();
@@ -33,37 +32,36 @@ namespace Sportclub.UI
 
         protected override void Configure()
         {
-            _container.Instance(_container);
+            
+             _container.Instance(_container);
 
             _container.Singleton<IWindowManager, WindowManager>();
             _container.Singleton<IEventAggregator, EventAggregator>();
-
+           
+            //Methodes to fill the _container for DI
             RegisterDatabase();
             RegisterServices();
         }
-
-        //Methodes to fill the _container for DI
         private void RegisterDatabase()
         {
             var dbContext = new SportClubDBContext();
             _container.RegisterInstance(typeof(SportClubDBContext), "DbContext", dbContext);
         }
-
         private void RegisterServices()
         {
             
-            //find all ViewModel classes and put in _container (not a good practice but possible to use in small projects )
+            //find all ViewModel classes and put in _container for DI(not a good practice but possible to use in small projects )
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
                 .Where(type => type.Name.EndsWith("ViewModel"))
                 .ToList()
-                .ForEach(viewModelType => _container.RegisterPerRequest(viewModelType, null, viewModelType));
+                .ForEach(viewModelType => _container.RegisterSingleton(viewModelType, null, viewModelType));
 
 
             //hard coded adding the services for DI
             _container.PerRequest<IClubService, ClubService>();
             _container.PerRequest<ISportService, SportService>();
-            _container.PerRequest<IAddresService, AddressService>();
+            _container.PerRequest<IAddressService, AddressService>();
             _container.PerRequest<IMemberService, MemberService>();
             _container.PerRequest<IMaterialService, MaterialService>();
 
@@ -75,9 +73,9 @@ namespace Sportclub.UI
             //load the ShellViewmodel on startup
             DisplayRootViewFor<ShellViewModel>();
 
-            // fill DB with Dummy content
-            var dbClass = new tryoutDBClass();
-            dbClass.DummyData();
+           //  fill DB with Dummy content
+           // var dbClass = new tryoutDBClass();
+           // dbClass.DummyData();
         }
 
         //Configure the container --> Copy/Paste  this is always the same

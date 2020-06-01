@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Sportclub.UI.Views
+namespace SportClub.UI.Views
 {
     /// <summary>
     /// Interaction logic for SheelView.xaml

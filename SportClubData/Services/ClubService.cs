@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity.Migrations;
+using System.Linq;
 using SportClub.Data.EntityModels;
 using SportClub.Data.ServiceContracts;
 using SportClub.Data.DataContext;
@@ -17,7 +18,7 @@ namespace SportClub.Data.Services
       }
 
 
-      public EntityModels.Club LoginSportClub(string password, string clubName)
+      public Club LoginSportClub(string password, string clubName)
       {
          var club = _dbContext.Clubs.FirstOrDefault(s => s.Name == clubName && s.Password == password);
           return club;
@@ -25,7 +26,28 @@ namespace SportClub.Data.Services
 
       public bool CheckSportClub(string clubName)
       {
-          throw new System.NotImplementedException();
+          var check = _dbContext.Clubs.Any(c => c.Name == clubName);
+          return check;
+      }
+
+      public void CreateSportClub(Club club)
+      {
+          _dbContext.Clubs.Add(club);
+          _dbContext.SaveChanges();
+      }
+
+      public void DeleteSportClub(Club club)
+      {
+          _dbContext.Clubs.Remove(club);
+          _dbContext.SaveChanges();
+
+      }
+
+      public void UpdateSportClub(Club club)
+      {
+         
+          _dbContext.Clubs.AddOrUpdate(club);
+          _dbContext.SaveChanges();
       }
   }
 }

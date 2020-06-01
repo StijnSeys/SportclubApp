@@ -3,20 +3,31 @@ using System.Windows;
 using Caliburn.Micro;
 using SportClub.Data.DataContext;
 using SportClub.Data.ServiceContracts;
+using Sportclub.UI.EventModels;
+using SportClub.UI.EventModels;
 
-namespace Sportclub.UI.ViewModels
+namespace SportClub.UI.ViewModels
 {
-   public class LoginViewModel : Screen
+   public class LoginViewModel : Screen , IHandle<LoginEvent> 
    {
 
 		private string _clubName;
         private string _password;
+        private string _errorMessage;
+        private string _okMessage;
+
         private readonly IClubService _sportClubService;
+        private readonly IEventAggregator _events;
 
 
-        public LoginViewModel(IClubService sportClubService)
+        public LoginViewModel(IClubService clubService, IEventAggregator events)
         {
-           _sportClubService = sportClubService;
+           _sportClubService = clubService;
+
+           _events = events;
+
+           _events.Subscribe(this);
+
         }
 
 		public string ClubName
@@ -25,6 +36,7 @@ namespace Sportclub.UI.ViewModels
             set
             {
                 _clubName = value;
+                ErrorMessage = "";
                 NotifyOfPropertyChange(()=> ClubName);
                 NotifyOfPropertyChange(() => CanLogIn);
             }
@@ -37,10 +49,34 @@ namespace Sportclub.UI.ViewModels
             set
             {
                 _password = value;
+                ErrorMessage = "";
                 NotifyOfPropertyChange(()=> Password);
                 NotifyOfPropertyChange(()=> CanLogIn);
             }
 		}
+
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+               
+                _errorMessage = value;
+                NotifyOfPropertyChange(() => ErrorMessage);
+            }
+
+        }
+        public string OkMessage
+        {
+            get { return _okMessage; }
+            set
+            {
+
+                _okMessage = value;
+                NotifyOfPropertyChange(() => OkMessage);
+            }
+
+        }
 
         //check for input before enable loginButton 
         public bool CanLogIn
@@ -64,11 +100,38 @@ namespace Sportclub.UI.ViewModels
 
           if (sportClub == null)
           {
-              MessageBoxResult result =
-                  MessageBox.Show("Account niet correct!","Bevesteging", MessageBoxButton.OK, MessageBoxImage.Question);
-          } 
+              //check if sportclub exists show appropriate message
+              var exist =  _sportClubService.CheckSportClub(ClubName);
+            if (exist)
+            {
+                ErrorMessage = "Password Incorrect";
+                return;
+            }
 
+            ErrorMessage = "SportClub is not registered";
+            
+          }
+          else
+          {
+              //navigate to MainWindowViewmodel
+              _events.PublishOnUIThread(new MainScreenEvent(sportClub));
+          }
+          
         }
 
-	}
+        public void CreateAccount()
+        {
+
+            //navigate to registerVieModel
+            _events.PublishOnUIThread(new CreateAccountEvent());
+        }
+         
+        public void Handle(LoginEvent message)
+        {
+
+            OkMessage = message.Text;
+            ClubName = message.ClubName;
+
+        }
+   }
 }

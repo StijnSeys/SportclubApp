@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SportClub.UI.Views
 {
     /// <summary>
-    /// Interaction logic for RegisterView.xaml
+    /// Interaction logic for MainWindowView.xaml
     /// </summary>
-    public partial class RegisterView : UserControl
+    public partial class MainScreenView : UserControl
     {
-        public RegisterView()
+        public MainScreenView()
         {
             InitializeComponent();
         }

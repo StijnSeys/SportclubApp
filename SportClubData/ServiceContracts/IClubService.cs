@@ -1,4 +1,6 @@
-﻿using SportClub.Data.EntityModels;
+﻿
+
+using SportClub.Data.EntityModels;
 
 namespace SportClub.Data.ServiceContracts
 {
@@ -9,5 +11,11 @@ namespace SportClub.Data.ServiceContracts
 
     bool CheckSportClub(string clubName);
 
-  }
+    void CreateSportClub(Club club);
+
+    void DeleteSportClub(Club club);
+
+    void UpdateSportClub(Club club);
+
+    }
 }
