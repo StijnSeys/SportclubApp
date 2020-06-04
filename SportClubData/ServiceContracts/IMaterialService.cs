@@ -1,4 +1,6 @@
-﻿using SportClub.Data.EntityModels;
+﻿using System;
+using System.Collections.Generic;
+using SportClub.Data.EntityModels;
 
 namespace SportClub.Data.ServiceContracts
 {
@@ -6,6 +8,8 @@ namespace SportClub.Data.ServiceContracts
     {
 
         void CreateMaterial(Material material);
+
+        ICollection<Material> GetMaterialForSport(Guid sportId);
 
     }
 }

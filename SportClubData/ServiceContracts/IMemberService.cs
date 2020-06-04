@@ -12,7 +12,7 @@ namespace SportClub.Data.ServiceContracts
 
        void UpdateMember(Member member);
 
-        ICollection<Member> GetMembers();
+        IList<Member> GetMembers();
 
 
     }

@@ -108,8 +108,7 @@ namespace SportClub.UI.ViewModels
                 return;
             }
 
-            ErrorMessage = "SportClub is not registered";
-            
+            ErrorMessage = "SportClub heeft nog geen account";
           }
           else
           {

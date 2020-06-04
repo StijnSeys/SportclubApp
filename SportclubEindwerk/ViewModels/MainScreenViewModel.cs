@@ -16,14 +16,17 @@ namespace SportClub.UI.ViewModels
     {
 
         private readonly IMaterialService _materialService;
+        private readonly IEventAggregator _event;
+
 
         public MainScreenViewModel(IMaterialService materialService, IEventAggregator events)
         {
             _materialService = materialService;
-
+            _event = events;
             events.Subscribe(this);
         }
 
+        private Club _club;
         private string _loginLogo;
         private string _loggedInClub;
 
@@ -48,7 +51,7 @@ namespace SportClub.UI.ViewModels
             }
         }
 
-        private List<string> _memberList;
+        private List<string> _memberList = new List<string>();
 
         public List<string> MemberList
         {
@@ -60,6 +63,12 @@ namespace SportClub.UI.ViewModels
             }
         }
 
+        public void OrderMaterial()
+        {
+
+            _event.PublishOnUIThread(new MaterialEvent(_club));
+
+        }
 
         public void Handle(MainScreenEvent message)
         {
@@ -67,12 +76,21 @@ namespace SportClub.UI.ViewModels
             LoginLogo = message.Club.ClubLogo;
             LoggedInClub = message.Club.Name;
 
-            foreach (var member in message.Club.Members)
+            if (message.Club.Members.Count != 0)
             {
-                membersName.Add(member.FirstName + "  "+ member.LastName);
-            }
 
-            MemberList = membersName;
+                foreach (var member in message.Club.Members) 
+                {
+                 membersName.Add(member.FirstName + "  "+ member.LastName);
+                } 
+                MemberList = membersName;
+            }
+            else
+            {
+                MemberList.Add("Nog geen leden ingeladen");
+            }
+           
+            _club = message.Club;
         }
 
 

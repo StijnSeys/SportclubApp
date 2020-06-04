@@ -24,12 +24,15 @@ namespace SportClub.UI.ViewModels
 
         private readonly IClubService _clubService;
         private readonly IEventAggregator _events;
+        private readonly ISportService _sportService;
         
 
 
-        public RegisterViewModel(IClubService clubService, IEventAggregator events)
+        public RegisterViewModel(IClubService clubService, IEventAggregator events, ISportService sportService)
         {
+            _sportService = sportService;
             _clubService = clubService;
+          
             _events = events;
             events.Subscribe(this);
         }
@@ -83,7 +86,7 @@ namespace SportClub.UI.ViewModels
             set
             {
                 _clubLogo = value;
-                NotifyOfPropertyChange(() => ClubLogo);
+                NotifyOfPropertyChange();
             }
         }
 
@@ -110,7 +113,7 @@ namespace SportClub.UI.ViewModels
             set
             {
                 _street = value;
-                NotifyOfPropertyChange( () => Street);
+                NotifyOfPropertyChange();
             }
         }
 
@@ -122,7 +125,7 @@ namespace SportClub.UI.ViewModels
             set
             {
                 _number = value;
-                NotifyOfPropertyChange(() => Number);
+                NotifyOfPropertyChange();
             }
         }
 
@@ -134,7 +137,7 @@ namespace SportClub.UI.ViewModels
             set
             {
                 _city = value;
-                NotifyOfPropertyChange(() => City);
+                NotifyOfPropertyChange();
             }
         }
 
@@ -146,7 +149,33 @@ namespace SportClub.UI.ViewModels
             set
             {
                 _postcode = value;
-                NotifyOfPropertyChange(() => PostCode);
+                NotifyOfPropertyChange();
+            }
+        }
+
+       
+        public IList<Sport> AllSports
+        {
+
+            get
+            {
+                return (IList<Sport>) _sportService.GetSports();
+            }
+
+        }
+
+        private IList<Sport> _selectedSports;
+
+        public IList<Sport> SelectedSports
+        {
+            get
+            {
+                return _selectedSports;
+            }
+            set
+            {
+                _selectedSports = value;
+                NotifyOfPropertyChange();
             }
         }
 
@@ -186,6 +215,14 @@ namespace SportClub.UI.ViewModels
                     ErrorMessage = "Deze SportClub heeft al een account";
                     return;
                 }
+
+                var sports = new List<Sport>();
+
+                foreach (var sport in SelectedSports)
+                {
+                    sports.Add(sport);
+                }
+                
                 var address = new Address
                  {
                      AddressId = Guid.NewGuid(),
@@ -201,9 +238,11 @@ namespace SportClub.UI.ViewModels
                     Name = _clubName,
                     Password = _password,
                     ClubLogo = _clubLogo,
-                    Address = address
-                };
+                    Address = address,
+                    Sports = sports,
+                    Members = new List<Member>()
 
+                };
 
                 _clubService.CreateSportClub(club);
 

@@ -5,26 +5,25 @@ using SportClub.UI.EventModels;
 namespace SportClub.UI.ViewModels
 {
     //Conductor caliburn micro 
-    public class ShellViewModel : Conductor<object>, IHandle<CreateAccountEvent>, IHandle<MainScreenEvent>, IHandle<LoginEvent>
+    public class ShellViewModel : Conductor<object>, IHandle<CreateAccountEvent>, IHandle<MainScreenEvent>, IHandle<LoginEvent>,IHandle<MaterialEvent>
     {
-        private readonly SimpleContainer _container;
+        private readonly MainScreenViewModel _mainScreenViewModel;
+        private readonly MaterialViewModel _materialViewModel;
 
         
-        public ShellViewModel(IEventAggregator events, SimpleContainer container)
+        public ShellViewModel(IEventAggregator events, MainScreenViewModel mainScreenViewModel, MaterialViewModel materialViewModel)
         {
-          
-            
-            _container = container;
+
+            //Create instances to access the handelrs inside the viewmodel
+            _mainScreenViewModel = mainScreenViewModel;
+            _materialViewModel = materialViewModel;
 
             //Adding and listening to events 
             events.Subscribe(this);
 
-            //Create instance of viewModels to trigger the handler inside the viewModels for input(Good practice ??? )
-            _container.GetInstance<MainScreenViewModel>();
-
 
             //open ViewModel on startup
-            ActivateItem(_container.GetInstance<LoginViewModel>());
+            ActivateItem(IoC.Get<LoginViewModel>());
         }
 
         public sealed override void ActivateItem(object item)
@@ -37,20 +36,25 @@ namespace SportClub.UI.ViewModels
 
         {
 
-            ActivateItem(_container.GetInstance<RegisterViewModel>());
+            ActivateItem(IoC.Get<RegisterViewModel>());
 
         }
         public void Handle(LoginEvent message)
         {
             
-            ActivateItem(_container.GetInstance<LoginViewModel>());
+            ActivateItem(IoC.Get<LoginViewModel>());
 
         }
 
         public void Handle(MainScreenEvent message)
         {
             
-            ActivateItem(_container.GetInstance<MainScreenViewModel>());
+            ActivateItem(_mainScreenViewModel);
+        }
+
+        public void Handle(MaterialEvent message)
+        {
+           ActivateItem(_materialViewModel);
         }
     }
 }

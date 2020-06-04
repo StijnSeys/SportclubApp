@@ -17,8 +17,8 @@ namespace SportClub.Data.EntityModels
         [Required]
         public int PostCode { get; set; }
 
-        public  ICollection<Member> AddressMembers { get; set; }
+        public virtual ICollection<Member> AddressMembers { get; set; }
 
-        public  ICollection<Club> AddressSportClubs { get; set; } 
+        public virtual  ICollection<Club> AddressSportClubs { get; set; } 
     }
 }

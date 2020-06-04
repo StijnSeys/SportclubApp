@@ -31,7 +31,7 @@ namespace SportClub.Data.Services
             throw new NotImplementedException();
         }
 
-        public ICollection<Member> GetMembers()
+        public IList<Member> GetMembers()
         {
             throw new NotImplementedException();
         }

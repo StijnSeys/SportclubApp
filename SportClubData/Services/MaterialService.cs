@@ -1,4 +1,7 @@
-﻿using SportClub.Data.DataContext;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using SportClub.Data.DataContext;
 using SportClub.Data.EntityModels;
 using SportClub.Data.ServiceContracts;
 
@@ -20,5 +23,13 @@ namespace SportClub.Data.Services
             _context.SaveChanges();
         }
 
+        public ICollection<Material> GetMaterialForSport(Guid sportId)
+        {
+
+            var materials = _context.Materials.Where(m => m.Sport.SportId == sportId);
+
+            return materials.ToList();
+
+        }
     }
 }

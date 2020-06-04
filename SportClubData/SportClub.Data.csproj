@@ -78,6 +78,10 @@
     <Compile Include="Migrations\202005271218282_test.designer.cs">
       <DependentUpon>202005271218282_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006031530128_virtual.cs" />
+    <Compile Include="Migrations\202006031530128_virtual.designer.cs">
+      <DependentUpon>202006031530128_virtual.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Services\AddressService.cs" />
     <Compile Include="ServiceContracts\IAddressService.cs" />
@@ -116,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005271218282_test.resx">
       <DependentUpon>202005271218282_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006031530128_virtual.resx">
+      <DependentUpon>202006031530128_virtual.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
