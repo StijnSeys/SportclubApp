@@ -26,6 +26,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Button Content="Terug" Margin="10" Background="Aqua" x:Name="BackButton"/>
         <TextBlock Text="Materiaal Shop" FontSize="32" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" TextAlignment="Center" Margin="0 0 0 20"/>
         <TextBlock Grid.Row="1" Grid.Column="1" Text="Materialen"/>
         <ListBox x:Name="Materials" Grid.Column="1" Grid.Row="2"  MinHeight="200" MinWidth="200" SelectedItem="{Binding SelectedMaterial}">

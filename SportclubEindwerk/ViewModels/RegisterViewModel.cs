@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using Microsoft.Win32;
+using Sportclub.UI.EventModels;
 using SportClub.Data.EntityModels;
 using SportClub.Data.ServiceContracts;
-using Sportclub.UI.EventModels;
+using System;
+using System.Collections.Generic;
 
 
 namespace SportClub.UI.ViewModels
@@ -75,7 +71,6 @@ namespace SportClub.UI.ViewModels
                 NotifyOfPropertyChange(() => PassWord2);
             }
         }
-
 
         public string ClubLogo
         {
@@ -153,7 +148,6 @@ namespace SportClub.UI.ViewModels
             }
         }
 
-       
         public IList<Sport> AllSports
         {
 
@@ -178,8 +172,7 @@ namespace SportClub.UI.ViewModels
                 NotifyOfPropertyChange();
             }
         }
-
-
+        
         public void ChangeClubLogo()
         {
 
@@ -217,6 +210,12 @@ namespace SportClub.UI.ViewModels
                 }
 
                 var sports = new List<Sport>();
+
+                if (SelectedSports == null)
+                {
+                    ErrorMessage = "Er moet minimum 1 sport geselecteerd zijn";
+                    return;
+                }
 
                 foreach (var sport in SelectedSports)
                 {

@@ -18,6 +18,8 @@ namespace SportClub.Data.EntityModels
 
         public virtual ICollection<Club> SportClubs { get; set; }
 
+        public virtual ICollection<Sport> Sports { get; set; }
+
         public virtual Address Address { get; set; }
 
     }

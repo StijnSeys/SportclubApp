@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sportclub.UI.EventModels
+namespace SportClub.UI.EventModels
 {
-  public class CreateAccountEvent
+ public class CreateAccountEvent
     {
-
+      
     }
 }

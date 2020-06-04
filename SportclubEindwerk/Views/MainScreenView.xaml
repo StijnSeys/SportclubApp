@@ -27,15 +27,13 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" FontSize="48" Margin="0 0 0 20" Text="{Binding LoggedInClub}"></TextBlock>
 
-        <TextBlock Grid.Column="1" Grid.Row="1">Ledenlijst</TextBlock>
-        <ListBox x:Name="MemberList" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Height="200"  Margin="0 0 0 10" />
-        <Button x:Name="UpdateMembers" Grid.Column="1" Grid.Row="3" Margin="10" Width="170">Update Ledenlijst</Button>
-        <Button x:Name="MailView" Grid.Column="1" Grid.Row="4" Margin="10" Width="150">Mail opmaken</Button>
+        <!--<TextBlock Grid.Column="1" Grid.Row="1">Ledenlijst</TextBlock>
+        <ListBox x:Name="MemberList" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Height="200"  Margin="0 0 0 10" />-->
+        <Button x:Name="MemberManagement" Grid.Column="4" Grid.Row="3" Margin="10" Width="170">Leden Beheer</Button>
+        <Button x:Name="MailView" Grid.Column="4" Grid.Row="4" Margin="10" Width="150">Mail opmaken</Button>
 
-
-    
-        <Button x:Name="OrderMaterial" Grid.Column="4" Grid.Row="1" Width="150"  Margin="20" FontSize="16">Materiaal bestellen</Button>
-        <Image  Grid.Column="0" Grid.Row="0" Height="200" Grid.RowSpan="3"  Source="{Binding LoginLogo }"></Image>
+        <Button x:Name="OrderMaterial" Grid.Column="4" Grid.Row="2"  Margin="20" >Materiaal bestellen</Button>
+        <Image  Grid.Column="0" Grid.Row="0" Height="300" Width="300" Grid.RowSpan="3"  Source="{Binding LoginLogo }"></Image>
 
 
 

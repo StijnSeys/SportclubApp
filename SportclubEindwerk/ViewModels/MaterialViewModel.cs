@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using Microsoft.Office.Interop.Outlook;
 using SportClub.Data.EntityModels;
 using SportClub.Data.ServiceContracts;
 using SportClub.UI.EventModels;
 using SportClub.UI.Models;
-using Exception = System.Exception;
+using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
 
 namespace SportClub.UI.ViewModels
 {
-   public class MaterialViewModel: Screen , IHandle<MaterialEvent>
+    public class MaterialViewModel: Screen , IHandle<MaterialEvent>
     {
 
         private readonly IMaterialService _materialService;
@@ -64,7 +62,6 @@ namespace SportClub.UI.ViewModels
                 NotifyOfPropertyChange(() => CanRemoveFromCart);
             }
         }
-
 
         private BindingList<BuyMaterial> _cart = new BindingList<BuyMaterial>() ;
 
@@ -179,7 +176,6 @@ namespace SportClub.UI.ViewModels
            
         }
 
-
         public bool CanOrderMaterial
         {
             get
@@ -194,6 +190,7 @@ namespace SportClub.UI.ViewModels
                 return output;
             }
         }
+
         public void OrderMaterial()
         {
 
@@ -212,7 +209,7 @@ namespace SportClub.UI.ViewModels
 
                 body += material.CartDisplay+ "\n" ;
             }
-            body += "\n  Adres: \n" + _club.Address.Street + "  " + _club.Address.Number +"\n"+ _club.Address.PostCode + "\n" + _club.Address.City; ;
+            body += "\n Adres: \n" + _club.Address.Street + "  " + _club.Address.Number +"\n"+ _club.Address.PostCode + "\n" + _club.Address.City; ;
             
             oMailItem.Body = body;
 
@@ -220,6 +217,7 @@ namespace SportClub.UI.ViewModels
             if (messageBox == MessageBoxResult.Yes)
             {
                 oMailItem.Display(true);
+                ResetMaterialShop();
                 _event.PublishOnUIThread(new MainScreenEvent(_club));
             }
             else if (messageBox == MessageBoxResult.No)
@@ -229,7 +227,16 @@ namespace SportClub.UI.ViewModels
 
         }
 
+        public void BackButton()
+        {
+            ResetMaterialShop();
+            _event.PublishOnUIThread(new MainScreenEvent(_club));
+        }
 
+        public void ResetMaterialShop()
+        {
+            Cart = new BindingList<BuyMaterial>();
+        }
         public void Handle(MaterialEvent message)
         {
             var sportMaterial = new BindingList<Material>();

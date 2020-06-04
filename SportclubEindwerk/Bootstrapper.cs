@@ -12,7 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using SportClub.Data;
 
-namespace Sportclub.UI
+namespace SportClub.UI
 {
     public class Bootstrapper : BootstrapperBase
     {
@@ -23,6 +23,7 @@ namespace Sportclub.UI
         {
             Initialize();
 
+            //Add the passwordboxHelper Class 
             ConventionManager.AddElementConvention<PasswordBox>(
                 PasswordBoxHelper.BoundPasswordProperty,
                 "Password",
@@ -55,7 +56,7 @@ namespace Sportclub.UI
                 .Where(type => type.IsClass)
                 .Where(type => type.Name.EndsWith("ViewModel"))
                 .ToList()
-                .ForEach(viewModelType => _container.RegisterSingleton(viewModelType, null, viewModelType));
+                .ForEach(viewModelType => _container.RegisterPerRequest(viewModelType, null, viewModelType));
 
 
             //hard coded adding the services for DI
@@ -73,9 +74,9 @@ namespace Sportclub.UI
             //load the ShellViewmodel on startup
             DisplayRootViewFor<ShellViewModel>();
 
-           //  fill DB with Dummy content
-           // var dbClass = new tryoutDBClass();
-           // dbClass.DummyData();
+            ////  fill DB with Dummy content
+            //var dbClass = new tryoutDBClass();
+            //dbClass.DummyData();
         }
 
         //Configure the container --> Copy/Paste  this is always the same

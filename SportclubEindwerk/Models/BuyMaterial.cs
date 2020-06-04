@@ -13,7 +13,6 @@ namespace SportClub.UI.Models
         public Material Material { get; set; }
 
         private int _quantity;
-
         public int Quantity
         {
             get { return _quantity; }
@@ -27,7 +26,7 @@ namespace SportClub.UI.Models
         }
 
         //string to show in shop
-        public string CartDisplay => $"{Material.MaterialName} ({Quantity})";
+        public string CartDisplay => $"{Material.MaterialName} : {Quantity}";
 
         //to change the amount inside the cart and stay at the same position
         public event PropertyChangedEventHandler PropertyChanged;

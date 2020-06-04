@@ -4,7 +4,8 @@ using System.Windows.Controls;
 
 namespace Sportclub.UI.Helpers
 {
-
+    //Helper class that makes sure u can get a property out of a passwordBox as a string
+    
     public static class PasswordBoxHelper
     {
         public static readonly DependencyProperty BoundPasswordProperty =

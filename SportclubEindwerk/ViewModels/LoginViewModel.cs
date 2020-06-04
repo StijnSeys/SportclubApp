@@ -11,8 +11,8 @@ namespace SportClub.UI.ViewModels
    public class LoginViewModel : Screen , IHandle<LoginEvent> 
    {
 
-		private string _clubName;
-        private string _password;
+		private string _clubName ;
+        private string _password ;
         private string _errorMessage;
         private string _okMessage;
 
@@ -83,12 +83,7 @@ namespace SportClub.UI.ViewModels
         {
             get
             {
-                bool output = false;
-
-                if (ClubName?.Length > 0 && Password?.Length > 0)
-                {
-                    output = true;
-                }
+                var output = ClubName?.Length > 0 && Password?.Length > 0;
 
                 return output;
             }
@@ -100,7 +95,7 @@ namespace SportClub.UI.ViewModels
 
           if (sportClub == null)
           {
-              //check if sportclub exists show appropriate message
+              //check if sportClub exists show appropriate message
               var exist =  _sportClubService.CheckSportClub(ClubName);
             if (exist)
             {
@@ -114,6 +109,11 @@ namespace SportClub.UI.ViewModels
           {
               //navigate to MainWindowViewmodel
               _events.PublishOnUIThread(new MainScreenEvent(sportClub));
+
+              //clear the Textboxes for logout
+              Password = "";
+              ClubName = "";
+
           }
           
         }
@@ -123,6 +123,7 @@ namespace SportClub.UI.ViewModels
 
             //navigate to registerVieModel
             _events.PublishOnUIThread(new CreateAccountEvent());
+           
         }
          
         public void Handle(LoginEvent message)

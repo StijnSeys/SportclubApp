@@ -51,18 +51,7 @@ namespace SportClub.UI.ViewModels
             }
         }
 
-        private List<string> _memberList = new List<string>();
-
-        public List<string> MemberList
-        {
-            get { return _memberList; }
-            set
-            {
-                _memberList = value;
-                NotifyOfPropertyChange(()=> MemberList);
-            }
-        }
-
+        
         public void OrderMaterial()
         {
 
@@ -70,26 +59,17 @@ namespace SportClub.UI.ViewModels
 
         }
 
+        public void MemberManagement()
+        {
+            _event.PublishOnUIThread(new MemberEvent(_club));
+        }
+
         public void Handle(MainScreenEvent message)
         {
-            List<string> membersName = new List<string>();
+            
             LoginLogo = message.Club.ClubLogo;
             LoggedInClub = message.Club.Name;
 
-            if (message.Club.Members.Count != 0)
-            {
-
-                foreach (var member in message.Club.Members) 
-                {
-                 membersName.Add(member.FirstName + "  "+ member.LastName);
-                } 
-                MemberList = membersName;
-            }
-            else
-            {
-                MemberList.Add("Nog geen leden ingeladen");
-            }
-           
             _club = message.Club;
         }
 

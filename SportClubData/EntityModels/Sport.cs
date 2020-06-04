@@ -14,5 +14,7 @@ namespace SportClub.Data.EntityModels
         public virtual IList<Material> SportMaterials { get; set; }
 
         public virtual IList<Club> SportClubs { get; set; }
+
+       public virtual ICollection<Member> Members { get; set; }
     }
 }

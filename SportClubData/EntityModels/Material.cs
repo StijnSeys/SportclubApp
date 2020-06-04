@@ -12,7 +12,6 @@ namespace SportClub.Data.EntityModels
         [Required]
         public decimal Price { get; set; }
 
-
         public virtual Sport Sport { get; set; }
 
         

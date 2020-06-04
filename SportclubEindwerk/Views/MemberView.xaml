@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="SportClub.UI.Views.MemberView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SportClub.UI.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:uiProperties="clr-namespace:SportClub.UI.UIProperties"
+             mc:Ignorable="d" Background="White" FontSize="14"
+             d:DesignHeight="450" d:DesignWidth="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" FontSize="32" Margin="0 0 0 20" Text="Leden beheer"/>
+
+        <TextBlock Grid.Column="1" Grid.Row="1">Ledenlijst</TextBlock>
+        <ListBox x:Name="MemberList" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1" Width="250" Height="300" ItemsSource="{Binding MemberList}" DisplayMemberPath="MemberDisplay" SelectedItem="{Binding SelectedMember}" Margin="10" />
+        <Button x:Name="UpdateMembers" Grid.Column="1" Grid.Row="3" Margin="10" Width="100">Laad excel </Button>
+
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Column="4" Grid.Row="2" Margin="10">
+           
+            <DockPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="10">Persoonlijke gegevens:</TextBlock>
+            </DockPanel>
+
+            <DockPanel >
+           <TextBlock Margin="10" MinWidth="80">VoorNaam:</TextBlock>
+            <TextBox x:Name="FirstName" MinWidth="200" Margin="10" />
+                <TextBlock Margin="10" MinWidth="80">AchterNaam:</TextBlock>
+            <TextBox x:Name="LastName" MinWidth="200" Margin="10"/>
+            </DockPanel>
+
+            <DockPanel>
+                <TextBlock Margin="10" MinWidth="80">Email:</TextBlock>
+                <TextBox x:Name="Email" Grid.Column="4" Grid.Row="2" Width="200" Margin="10" HorizontalAlignment="Left"/>
+                <TextBlock Margin="10" MinWidth="80">Sport(en):</TextBlock>
+
+                <!--TODO-->
+                <ListBox x:Name="MemberClubSports" Grid.Column="4" Grid.Row="6" SelectionMode="Multiple" Margin="10">
+                </ListBox>
+            </DockPanel>
+
+            <DockPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="10">Adres gegevens:</TextBlock>
+            </DockPanel>
+
+            <DockPanel >
+                <TextBlock Margin="10" MinWidth="80">Straat:</TextBlock>
+                <TextBox x:Name="Street" Width="200" Margin=" 10" />
+                <TextBlock Margin="10" MinWidth="80">Huisnummer:</TextBlock>
+                <TextBox x:Name="Number" Width="200" Margin=" 10"/>
+            </DockPanel>
+            <DockPanel >
+                <TextBlock Margin="10" MinWidth="80">Stad:</TextBlock>
+                <TextBox x:Name="City" Width="200" Margin=" 10" />
+                <TextBlock Margin="10" MinWidth="80">Postcode:</TextBlock>
+                <TextBox x:Name="Postcode" MinWidth="200" Margin=" 10"/>
+            </DockPanel>
+            <DockPanel>
+                <Button Content="Aanpassen" Width="100" HorizontalAlignment="Right" Margin="10 30 30 10"/>
+            </DockPanel>
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>

@@ -19,7 +19,8 @@ namespace SportClub.Data
                     Email = "stijnseys@gmail.com",
                     FirstName = "stijn",
                     LastName = "seys",
-                    SportClubs = new List<Club>()
+                    SportClubs = new List<Club>(),
+                    Sports = new List<Sport>()
 
 
                 };
@@ -29,7 +30,8 @@ namespace SportClub.Data
                     Email = "luclev@gmail.com",
                     FirstName = "Luc",
                     LastName = "lev",
-                    SportClubs = new List<Club>()
+                    SportClubs = new List<Club>(),
+                    Sports = new List<Sport>()
                 };
                 var member3 = new Member()
                 {
@@ -37,7 +39,9 @@ namespace SportClub.Data
                     Email = "amadeo@gmail.com",
                     FirstName = "Ama",
                     LastName = "deo",
-                    SportClubs = new List<Club>()
+                    SportClubs = new List<Club>(),
+                    Sports = new List<Sport>()
+                    
                 };
 
                 //dummy sportclub
@@ -96,20 +100,24 @@ namespace SportClub.Data
                 {
                     SportId = Guid.NewGuid(),
                     Name = "voetbal",
-                    SportClubs = new List<Club>()
+                    SportClubs = new List<Club>(),
+                    Members = new List<Member>()
+
                 };
 
                 var tennis = new Sport()
                 {
                     SportId = Guid.NewGuid(),
                     Name = "tennis",
-                    SportClubs = new List<Club>()
+                    SportClubs = new List<Club>(),
+                    Members = new List<Member>()
                 };
                 var basketbal = new Sport()
                 {
                     SportId = Guid.NewGuid(),
                     Name = "Basket",
-                    SportClubs = new List<Club>()
+                    SportClubs = new List<Club>(),
+                    Members = new List<Member>()
 
                 };
 
@@ -167,11 +175,19 @@ namespace SportClub.Data
 
                 member1.SportClubs.Add(club);
                 member1.SportClubs.Add(club2);
+                member1.Sports.Add(voetbal);
+                member1.Sports.Add(basketbal);
+                member1.Sports.Add(tennis);
 
                 member2.SportClubs.Add(club);
                 member2.SportClubs.Add(club2);
+                member2.Sports.Add(voetbal);
+                member2.Sports.Add(basketbal);
+                member2.Sports.Add(tennis);
+
 
                 member3.SportClubs.Add(club);
+                member3.Sports.Add(voetbal);
 
 
 

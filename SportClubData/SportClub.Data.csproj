@@ -58,29 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityModels\Club.cs" />
-    <Compile Include="Migrations\202005251427514_initial.cs" />
-    <Compile Include="Migrations\202005251427514_initial.designer.cs">
-      <DependentUpon>202005251427514_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005251428522_initial2.cs" />
-    <Compile Include="Migrations\202005251428522_initial2.designer.cs">
-      <DependentUpon>202005251428522_initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005261124242_update.cs" />
-    <Compile Include="Migrations\202005261124242_update.designer.cs">
-      <DependentUpon>202005261124242_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005261126593_update2.cs" />
-    <Compile Include="Migrations\202005261126593_update2.designer.cs">
-      <DependentUpon>202005261126593_update2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202005271218282_test.cs" />
-    <Compile Include="Migrations\202005271218282_test.designer.cs">
-      <DependentUpon>202005271218282_test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006031530128_virtual.cs" />
-    <Compile Include="Migrations\202006031530128_virtual.designer.cs">
-      <DependentUpon>202006031530128_virtual.cs</DependentUpon>
+    <Compile Include="Migrations\202006041840390_explicit.cs" />
+    <Compile Include="Migrations\202006041840390_explicit.designer.cs">
+      <DependentUpon>202006041840390_explicit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Services\AddressService.cs" />
@@ -106,23 +86,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202005251427514_initial.resx">
-      <DependentUpon>202005251427514_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005251428522_initial2.resx">
-      <DependentUpon>202005251428522_initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005261124242_update.resx">
-      <DependentUpon>202005261124242_update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005261126593_update2.resx">
-      <DependentUpon>202005261126593_update2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202005271218282_test.resx">
-      <DependentUpon>202005271218282_test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006031530128_virtual.resx">
-      <DependentUpon>202006031530128_virtual.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006041840390_explicit.resx">
+      <DependentUpon>202006041840390_explicit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
