@@ -6,6 +6,7 @@ namespace SportClub.Data.EntityModels
  public class Material
     {
         [Key]
+        [Required]
         public Guid MaterialId { get; set; }
         [Required]
         public string MaterialName { get; set; }

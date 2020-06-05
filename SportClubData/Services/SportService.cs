@@ -22,5 +22,11 @@ namespace SportClub.Data.Services
           var sports = _context.Sports;
           return sports.ToList();
       }
+
+      public Sport GetSportByName(string name)
+      {
+          var sport = _context.Sports.FirstOrDefault(s => s.Name == name);
+          return sport;
+      }
   }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SportClub.Data.DataContext;
 using SportClub.Data.EntityModels;
 
-namespace SportClub.Data
+namespace SportClub.Data.FillDataHelpers
 {
  public class tryoutDBClass
     {
@@ -37,7 +37,7 @@ namespace SportClub.Data
                 {
                     MemberId = Guid.NewGuid(),
                     Email = "amadeo@gmail.com",
-                    FirstName = "Ama",
+                    FirstName = "ama",
                     LastName = "deo",
                     SportClubs = new List<Club>(),
                     Sports = new List<Sport>()
@@ -88,7 +88,7 @@ namespace SportClub.Data
                 var address3 = new Address()
                 {
                     AddressId = Guid.NewGuid(),
-                    City = "kortrijk",
+                    City = "Kortrijk",
                     Street = "Heulsestraat",
                     Number = "50",
                     PostCode = 8501
@@ -99,7 +99,7 @@ namespace SportClub.Data
                 var voetbal = new Sport()
                 {
                     SportId = Guid.NewGuid(),
-                    Name = "voetbal",
+                    Name = "Voetbal",
                     SportClubs = new List<Club>(),
                     Members = new List<Member>()
 
@@ -108,7 +108,7 @@ namespace SportClub.Data
                 var tennis = new Sport()
                 {
                     SportId = Guid.NewGuid(),
-                    Name = "tennis",
+                    Name = "Tennis",
                     SportClubs = new List<Club>(),
                     Members = new List<Member>()
                 };
@@ -125,31 +125,50 @@ namespace SportClub.Data
                 var material1 = new Material()
                 {
                     MaterialId = Guid.NewGuid(),
-                    MaterialName = "voetbal",
+                    MaterialName = "Voetbal",
                     Price = 20.0m
+                };
+                var material1A = new Material()
+                {
+                    MaterialId = Guid.NewGuid(),
+                    MaterialName = "Keeper handschoenen",
+                    Price = 24.99m
                 };
 
                 var material2 = new Material()
                 {
                     MaterialId  = Guid.NewGuid(),
-                    MaterialName  = "tennisbal",
+                    MaterialName  = "Tennisbal",
                     Price = 10.0m
                 };
-
+                var material2A = new Material()
+                {
+                    MaterialId = Guid.NewGuid(),
+                    MaterialName = "Tennisraket",
+                    Price = 39.59m
+                };
                 var material3 = new Material()
                 {
                     MaterialId = Guid.NewGuid(),
-                    MaterialName = "basketbal",
-                    Price = 20.0m
+                    MaterialName = "Basketbal",
+                    Price = 31.04m
                 };
 
-              
+                var material3A = new Material()
+                {
+                    MaterialId = Guid.NewGuid(),
+                    MaterialName = "Basketshoenen",
+                    Price = 49.99m
+                };
 
 
                 //configure relations 
                 material1.Sport = voetbal;
+                material1A.Sport = voetbal;
                 material2.Sport = tennis;
+                material2A.Sport = tennis;
                 material3.Sport = basketbal;
+                material3A.Sport = basketbal;
 
                 member1.Address = address1;
                 member2.Address = address2;
@@ -206,6 +225,9 @@ namespace SportClub.Data
                 context.Materials.Add(material1);
                 context.Materials.Add(material2);
                 context.Materials.Add(material3);
+                context.Materials.Add(material1A);
+                context.Materials.Add(material2A);
+                context.Materials.Add(material3A);
 
                 context.Sports.Add(voetbal);
                 context.Sports.Add(tennis);

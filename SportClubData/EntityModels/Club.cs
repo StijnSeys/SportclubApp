@@ -10,6 +10,7 @@ namespace SportClub.Data.EntityModels
     public class Club
     {
         [Key]
+        [Required]
         public Guid SportClubId { get; set; }
         [Required]
         public string Name { get; set; }
@@ -22,6 +23,6 @@ namespace SportClub.Data.EntityModels
 
         public virtual ICollection<Sport> Sports { get; set; }
 
-        public Address Address { get; set; }
+        public virtual Address Address { get; set; }
     }
 }

@@ -9,7 +9,6 @@ using System.Windows.Interactivity;
 namespace SportClub.UI.UIProperties
 {
 
-
     //Know problem with binding multiple items out of a listbox.SelectedItems -> not allowed
     //source  @Bavo Ketels  -> https://tyrrrz.me/blog/wpf-listbox-selecteditems-twoway-binding
 

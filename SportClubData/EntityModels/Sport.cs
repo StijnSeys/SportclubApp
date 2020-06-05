@@ -7,6 +7,7 @@ namespace SportClub.Data.EntityModels
    public class Sport
     {
         [Key]
+        [Required]
         public Guid SportId { get; set; }
         [Required]
         public string Name { get; set; }

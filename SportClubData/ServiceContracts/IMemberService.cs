@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using SportClub.Data.EntityModels;
 
 namespace SportClub.Data.ServiceContracts
@@ -14,6 +16,9 @@ namespace SportClub.Data.ServiceContracts
 
         IList<Member> GetMembers();
 
+        bool CheckMember(Guid memberId);
+
+        Member GetMember(Guid memberId);
 
     }
 }

@@ -22,6 +22,7 @@ namespace SportClub.UI.ViewModels
             _loginViewModel = loginViewModel;
             _memberViewModel = memberViewModel;
 
+
             //Adding and listening to events 
             events.Subscribe(this);
 

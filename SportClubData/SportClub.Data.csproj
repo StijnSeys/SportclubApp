@@ -57,10 +57,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FillDataHelpers\MaterialData.cs" />
     <Compile Include="EntityModels\Club.cs" />
-    <Compile Include="Migrations\202006041840390_explicit.cs" />
-    <Compile Include="Migrations\202006041840390_explicit.designer.cs">
-      <DependentUpon>202006041840390_explicit.cs</DependentUpon>
+    <Compile Include="Migrations\202006051318293_extramaterial.cs" />
+    <Compile Include="Migrations\202006051318293_extramaterial.designer.cs">
+      <DependentUpon>202006051318293_extramaterial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Services\AddressService.cs" />
@@ -79,15 +80,15 @@
     <Compile Include="EntityModels\Member.cs" />
     <Compile Include="EntityModels\Sport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tryoutDBClass.cs" />
+    <Compile Include="FillDataHelpers\tryoutDBClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006041840390_explicit.resx">
-      <DependentUpon>202006041840390_explicit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006051318293_extramaterial.resx">
+      <DependentUpon>202006051318293_extramaterial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

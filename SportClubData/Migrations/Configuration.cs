@@ -12,7 +12,6 @@ namespace SportClub.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationDataLossAllowed = true;
-            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(SportClubDBContext context)

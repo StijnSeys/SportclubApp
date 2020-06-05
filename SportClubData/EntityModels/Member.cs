@@ -7,6 +7,7 @@ namespace SportClub.Data.EntityModels
    public class Member
     {
         [Key] 
+        [Required]
         public Guid MemberId { get; set; }
         [Required]
         public string FirstName { get; set; }
@@ -15,12 +16,12 @@ namespace SportClub.Data.EntityModels
         [Required]
         public string Email { get; set; }
 
-
         public virtual ICollection<Club> SportClubs { get; set; }
 
         public virtual ICollection<Sport> Sports { get; set; }
 
         public virtual Address Address { get; set; }
+
 
     }
 }

@@ -7,5 +7,7 @@ namespace SportClub.Data.ServiceContracts
   {
 
       IList<Sport> GetSports();
+
+      Sport GetSportByName(string name);
   }
 }

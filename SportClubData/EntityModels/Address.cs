@@ -7,6 +7,7 @@ namespace SportClub.Data.EntityModels
   public class Address
     {
         [Key]
+        [Required]
         public Guid AddressId { get; set; }
         [Required]
         public string Street { get; set; }

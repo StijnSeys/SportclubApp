@@ -1,21 +1,22 @@
 ﻿
 using Caliburn.Micro;
 using Sportclub.UI.Helpers;
-using SportClub.UI.ViewModels;
 using SportClub.Data.DataContext;
+using SportClub.Data.FillDataHelpers;
 using SportClub.Data.ServiceContracts;
 using SportClub.Data.Services;
+using SportClub.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using SportClub.Data;
 
 namespace SportClub.UI
 {
     public class Bootstrapper : BootstrapperBase
     {
+
         //dependency injection from caliburn micro
         private readonly SimpleContainer _container = new SimpleContainer();
 

@@ -19,9 +19,9 @@ namespace SportClub.UI.ViewModels
         private readonly IEventAggregator _event;
 
 
-        public MainScreenViewModel(IMaterialService materialService, IEventAggregator events)
+        public MainScreenViewModel( IEventAggregator events)
         {
-            _materialService = materialService;
+           
             _event = events;
             events.Subscribe(this);
         }

@@ -28,11 +28,12 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+        <Button Content="Terug" Margin="10" Grid.ColumnSpan="2" Width="100" HorizontalAlignment="Left" Background="Aqua" x:Name="BackButton"/>
         <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" FontSize="32" Margin="0 0 0 20" Text="Leden beheer"/>
 
         <TextBlock Grid.Column="1" Grid.Row="1">Ledenlijst</TextBlock>
         <ListBox x:Name="MemberList" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1" Width="250" Height="300" ItemsSource="{Binding MemberList}" DisplayMemberPath="MemberDisplay" SelectedItem="{Binding SelectedMember}" Margin="10" />
-        <Button x:Name="UpdateMembers" Grid.Column="1" Grid.Row="3" Margin="10" Width="100">Laad excel </Button>
+        <Button x:Name="UpdateMemberList" Grid.Column="1" Grid.Row="3" Margin="10" Width="150">Laad nieuwe ledenlijst </Button>
 
 
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Column="4" Grid.Row="2" Margin="10">
@@ -65,9 +66,10 @@
             <DockPanel >
                 <TextBlock Margin="10" MinWidth="80">Straat:</TextBlock>
                 <TextBox x:Name="Street" Width="200" Margin=" 10" />
-                <TextBlock Margin="10" MinWidth="80">Huisnummer:</TextBlock>
+                <TextBlock Margin="9" MinWidth="80">Huisnummer:</TextBlock>
                 <TextBox x:Name="Number" Width="200" Margin=" 10"/>
             </DockPanel>
+
             <DockPanel >
                 <TextBlock Margin="10" MinWidth="80">Stad:</TextBlock>
                 <TextBox x:Name="City" Width="200" Margin=" 10" />
@@ -75,7 +77,7 @@
                 <TextBox x:Name="Postcode" MinWidth="200" Margin=" 10"/>
             </DockPanel>
             <DockPanel>
-                <Button Content="Aanpassen" Width="100" HorizontalAlignment="Right" Margin="10 30 30 10"/>
+                <Button x:Name="EditMember" Content="Aanpassen" Width="100" HorizontalAlignment="Right" Margin="10 30 30 10"/>
             </DockPanel>
         </StackPanel>
 

@@ -21,7 +21,7 @@ namespace SportClub.Data.Services
 
       public Club LoginSportClub(string password, string clubName)
       {
-          var club = _dbContext.Clubs.FirstOrDefault(s => s.Name == clubName && s.Password == password);
+          var club = _dbContext.Clubs.FirstOrDefault(c => c.Name == clubName && c.Password == password);
           return club;
       }
 

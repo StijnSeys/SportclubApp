@@ -209,7 +209,7 @@ namespace SportClub.UI.ViewModels
 
                 body += material.CartDisplay+ "\n" ;
             }
-            body += "\n Adres: \n" + _club.Address.Street + "  " + _club.Address.Number +"\n"+ _club.Address.PostCode + "\n" + _club.Address.City; ;
+            body += "\n Adres: \n" + _club.Address.Street + "  " + _club.Address.Number +"\n"+ _club.Address.PostCode + "\n" + _club.Address.City;
             
             oMailItem.Body = body;
 
@@ -224,7 +224,6 @@ namespace SportClub.UI.ViewModels
             {
                return;
             }
-
         }
 
         public void BackButton()
@@ -237,6 +236,7 @@ namespace SportClub.UI.ViewModels
         {
             Cart = new BindingList<BuyMaterial>();
         }
+
         public void Handle(MaterialEvent message)
         {
             var sportMaterial = new BindingList<Material>();
