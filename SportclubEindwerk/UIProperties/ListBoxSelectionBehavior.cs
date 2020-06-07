@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interactivity;
+using SportClub.UI.Models;
 
 namespace SportClub.UI.UIProperties
 {
@@ -95,8 +96,13 @@ namespace SportClub.UI.UIProperties
     }
 
     //WPF doesn’t support generic behaviors. subtype the class for each specific data type
-    public class MyObjectListBoxSelectionBehavior : ListBoxSelectionBehavior<Sport>
+    public class SportListBoxSelectionBehavior : ListBoxSelectionBehavior<Sport>
   {
 
   }
+
+    public class MailListModelListBoxSelectionBehavior : ListBoxSelectionBehavior<MailListModel>
+    {
+
+    }
 }

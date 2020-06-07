@@ -1,4 +1,4 @@
-﻿namespace Sportclub.UI.EventModels
+﻿namespace SportClub.UI.EventModels
 {
     public class LoginEvent
   {
@@ -8,6 +8,10 @@
       public string ClubName { get; private set; }
 
 
+      public LoginEvent()
+      {
+          
+      }
       public LoginEvent(string text,string clubName)
       {
           Text = text;

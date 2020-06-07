@@ -1,6 +1,6 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Win32;
-using Sportclub.UI.EventModels;
+using SportClub.UI.EventModels;
 using SportClub.Data.EntityModels;
 using SportClub.Data.ServiceContracts;
 using System;
@@ -43,6 +43,7 @@ namespace SportClub.UI.ViewModels
             {
                 _clubName = value;
                 NotifyOfPropertyChange(() => ClubName);
+                NotifyOfPropertyChange(() => CanRegisterClub);
             }
         }
 
@@ -56,6 +57,7 @@ namespace SportClub.UI.ViewModels
             {
                 _password = value;
                 NotifyOfPropertyChange(() => PassWord);
+                NotifyOfPropertyChange(() => CanRegisterClub);
             }
         }
 
@@ -69,6 +71,7 @@ namespace SportClub.UI.ViewModels
             {
                 _password2 = value;
                 NotifyOfPropertyChange(() => PassWord2);
+                NotifyOfPropertyChange(() => CanRegisterClub);
             }
         }
 
@@ -109,6 +112,7 @@ namespace SportClub.UI.ViewModels
             {
                 _street = value;
                 NotifyOfPropertyChange();
+                NotifyOfPropertyChange(() => CanRegisterClub);
             }
         }
 
@@ -121,6 +125,7 @@ namespace SportClub.UI.ViewModels
             {
                 _number = value;
                 NotifyOfPropertyChange();
+                NotifyOfPropertyChange(() => CanRegisterClub);
             }
         }
 
@@ -133,6 +138,7 @@ namespace SportClub.UI.ViewModels
             {
                 _city = value;
                 NotifyOfPropertyChange();
+                NotifyOfPropertyChange(() => CanRegisterClub);
             }
         }
 
@@ -145,6 +151,7 @@ namespace SportClub.UI.ViewModels
             {
                 _postcode = value;
                 NotifyOfPropertyChange();
+                NotifyOfPropertyChange(()=> CanRegisterClub);
             }
         }
 
@@ -188,6 +195,22 @@ namespace SportClub.UI.ViewModels
 
                 ClubLogo = fileUri.ToString();
             }
+        }
+
+        public bool CanRegisterClub
+        {
+            get
+            {
+                bool output = false;
+
+                if (!string.IsNullOrEmpty(City) && !string.IsNullOrEmpty(ClubName) && !string.IsNullOrEmpty(Number) && !string.IsNullOrEmpty(Street) && !string.IsNullOrEmpty(PassWord) && !string.IsNullOrEmpty(PassWord2)&& PostCode > 0)
+                {
+                    output = true;
+                }
+
+                return output;
+            }
+
         }
 
         public void RegisterClub()
@@ -250,6 +273,13 @@ namespace SportClub.UI.ViewModels
 
             }
 
+
+        }
+
+        public void BackButton()
+        {
+
+            _events.PublishOnUIThread(new LoginEvent());
 
         }
 

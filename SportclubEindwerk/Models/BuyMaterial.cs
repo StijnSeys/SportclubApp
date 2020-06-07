@@ -7,7 +7,7 @@ using SportClub.UI.Annotations;
 
 namespace SportClub.UI.Models
 {
-    //ModelClass to work with het shop. 
+    //ModelClass to work with het MaterialShop. 
     public class BuyMaterial : INotifyPropertyChanged
     {
         public Material Material { get; set; }
@@ -20,6 +20,7 @@ namespace SportClub.UI.Models
             {
                 _quantity = value;
 
+                //to change the amount inside the cart and let the cartItems stay in the same position
                 PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(nameof(Quantity)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CartDisplay)));
             }
@@ -28,7 +29,7 @@ namespace SportClub.UI.Models
         //string to show in shop
         public string CartDisplay => $"{Material.MaterialName} : {Quantity}";
 
-        //to change the amount inside the cart and stay at the same position
+
         public event PropertyChangedEventHandler PropertyChanged;
 
 

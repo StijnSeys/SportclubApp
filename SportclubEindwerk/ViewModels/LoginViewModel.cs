@@ -1,18 +1,14 @@
-﻿using System.Data.Entity;
-using System.Windows;
-using Caliburn.Micro;
-using SportClub.Data.DataContext;
+﻿using Caliburn.Micro;
 using SportClub.Data.ServiceContracts;
-using Sportclub.UI.EventModels;
 using SportClub.UI.EventModels;
 
 namespace SportClub.UI.ViewModels
 {
-   public class LoginViewModel : Screen , IHandle<LoginEvent> 
+    public class LoginViewModel : Screen , IHandle<LoginEvent> 
    {
 
-		private string _clubName ;
-        private string _password ;
+		private string _clubName;
+        private string _password;
         private string _errorMessage;
         private string _okMessage;
 
@@ -22,22 +18,23 @@ namespace SportClub.UI.ViewModels
 
         public LoginViewModel(IClubService clubService, IEventAggregator events)
         {
-           _sportClubService = clubService;
+            _sportClubService = clubService;
 
-           _events = events;
+            _events = events;
 
-           _events.Subscribe(this);
+            _events.Subscribe(this);
+         
 
         }
 
-		public string ClubName
+        public string ClubName
 		{
 			get { return _clubName; }
             set
             {
                 _clubName = value;
                 ErrorMessage = "";
-                NotifyOfPropertyChange(()=> ClubName);
+                NotifyOfPropertyChange();
                 NotifyOfPropertyChange(() => CanLogIn);
             }
         
@@ -50,7 +47,7 @@ namespace SportClub.UI.ViewModels
             {
                 _password = value;
                 ErrorMessage = "";
-                NotifyOfPropertyChange(()=> Password);
+                NotifyOfPropertyChange();
                 NotifyOfPropertyChange(()=> CanLogIn);
             }
 		}
@@ -79,6 +76,7 @@ namespace SportClub.UI.ViewModels
         }
 
         //check for input before enable loginButton 
+
         public bool CanLogIn
         {
             get
@@ -99,11 +97,11 @@ namespace SportClub.UI.ViewModels
               var exist =  _sportClubService.CheckSportClub(ClubName);
             if (exist)
             {
-                ErrorMessage = "Password Incorrect";
+                ErrorMessage = "Verkeerd paswoord";
                 return;
             }
 
-            ErrorMessage = "SportClub heeft nog geen account";
+            ErrorMessage = " Deze sportclub heeft nog geen account";
           }
           else
           {
@@ -111,8 +109,11 @@ namespace SportClub.UI.ViewModels
               _events.PublishOnUIThread(new MainScreenEvent(sportClub));
 
               //clear the Textboxes for logout
-              Password = "";
+         
               ClubName = "";
+              Password = null;
+
+
 
           }
           
@@ -121,6 +122,7 @@ namespace SportClub.UI.ViewModels
         public void CreateAccount()
         {
 
+            
             //navigate to registerVieModel
             _events.PublishOnUIThread(new CreateAccountEvent());
            
@@ -128,9 +130,12 @@ namespace SportClub.UI.ViewModels
          
         public void Handle(LoginEvent message)
         {
+            //need to set passwordbox to null or will not be checked for changes on return to the viewmodel=> long search
+            Password = null;
 
             OkMessage = message.Text;
             ClubName = message.ClubName;
+           
 
         }
    }

@@ -24,7 +24,7 @@ namespace SportClub.UI
         {
             Initialize();
 
-            //Add the passwordboxHelper Class 
+          //  Add the passwordboxHelper Class
             ConventionManager.AddElementConvention<PasswordBox>(
                 PasswordBoxHelper.BoundPasswordProperty,
                 "Password",

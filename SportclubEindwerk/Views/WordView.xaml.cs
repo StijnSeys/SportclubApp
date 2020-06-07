@@ -3,11 +3,11 @@
 namespace SportClub.UI.Views
 {
     /// <summary>
-    /// Interaction logic for MemberView.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class MemberView : UserControl
+    public partial class WordView : UserControl
     {
-        public MemberView()
+        public WordView()
         {
             InitializeComponent();
         }

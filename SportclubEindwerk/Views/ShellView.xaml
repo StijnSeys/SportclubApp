@@ -3,16 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" 
-        Title="ShellView" Height="600" Width="1000">
-  <DockPanel>
-      <Menu DockPanel.Dock="Top" FontSize="18">
-          <MenuItem Header="_Account">
-              <MenuItem x:Name="LoginScreen" Header="_logout"/>
+        mc:Ignorable="d"  Background="LightBlue"
+        Title="ShellView" Height="800" Width="1200">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+
+        <DockPanel>
+      <Menu DockPanel.Dock="Top" FontSize="22" Background="CornflowerBlue"  >
+            <MenuItem Header="_Account" Foreground="White" FontWeight="Bold" Cursor="Hand">
+                <MenuItem x:Name="LoginScreen" Header="Uitloggen" Background="LightCoral" Cursor="Hand"/>
           </MenuItem>
       </Menu>
         <Grid>
+
+            <Grid.Background>
+          <ImageBrush ImageSource="../Resources/Images/pngguru.com.png"/>
+      </Grid.Background>
+
             <ContentControl x:Name="ActiveItem" Margin="5"></ContentControl>
         </Grid>
   </DockPanel>
+    </ScrollViewer>
+
 </Window>

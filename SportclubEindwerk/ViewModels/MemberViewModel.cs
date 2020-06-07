@@ -205,22 +205,50 @@ namespace SportClub.UI.ViewModels
                  Member = selectedMember
             };
 
-            //change it in de existing list so the changes is visible for the user
+            //change member in de existing list so the changes are visible for the user
             MemberList[MemberList.FindIndex(m => m.Member.MemberId == selectedMember.MemberId)] = changedMember;
 
             //make the change to the DB
             _memberService.UpdateMember(selectedMember);
 
+            ClearFields();
 
-            NotifyOfPropertyChange(() => CanEditMember);
+
+         
+
+        }
+
+        public void ClearFields()
+        {
+            City = null;
+            Street = null;
+            Email = null;
+            FirstName = null;
+            LastName = null;
+            Postcode = 0;
+            Number = null;
+            SelectedMember = null;
+            MemberList.Clear();
+            foreach (var member in _club.Members)
+            {
+                var model = new MemberListModel
+                {
+                    Member = member
+                };
+
+                MemberList.Add(model);
+            }
 
         }
 
         public void BackButton()
         {
+          
             _event.PublishOnUIThread(new MainScreenEvent(_club));
-            MemberList.Clear();
+            ClearFields();
+         
         }
+
 
 
         //Get the members info out of the excel
@@ -381,48 +409,5 @@ namespace SportClub.UI.ViewModels
 
         }
 
-
-
-
-
-
-
-        //public void ReadMaterial()
-        //{
-        //    Excel.Application tryout = new Excel.Application();
-
-        //    Excel.Workbook workbook = tryout.Workbooks.Open("C:\\Users\\user\\Desktop\\Eindwerk\\Materiaal.xlsx");
-
-        //    Excel.Worksheet worksheet = workbook.Sheets[1];
-
-        //    Excel.Range range = worksheet.UsedRange;
-
-        //    Dictionary<string, Decimal> materialList = new Dictionary<string, decimal>();
-        //    string key;
-
-        //    Decimal price;
-
-        //    for (int i = 0; i < range.Rows.Count; i++)
-        //    {
-        //        key = range.Cells[i, 1].Value.ToString();
-        //        price = range.Cells[i, 2].Value.ToString();
-
-        //        Material material = new Material();
-        //        material.MaterialName = key;
-        //        material.Price = price;
-
-
-        //        _materialService.CreateMaterial(material);
-
-        //    }
-
-        //    foreach (Excel.Range item in range)
-        //    {
-        //        key = item.Cells[1, 1].ToString();
-
-
-        //    }
-
-        //}
     }
 }

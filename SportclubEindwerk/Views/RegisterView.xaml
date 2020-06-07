@@ -6,8 +6,15 @@
              xmlns:local="clr-namespace:SportClub.UI.Views"
              xmlns:uiProperties="clr-namespace:SportClub.UI.UIProperties"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             mc:Ignorable="d" Background="White" FontSize="20"
+             mc:Ignorable="d" FontSize="20"
              d:DesignHeight="550" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Background" Value="CornflowerBlue"></Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -29,6 +36,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <Button Content="Terug" Margin="10" Height="40" Width="100" x:Name="BackButton"/>
 
         <TextBlock Grid.Column="1" Grid.Row="0" FontSize="28" Grid.ColumnSpan="4" HorizontalAlignment="Center">Register Form</TextBlock>
 
@@ -68,7 +77,7 @@
 
         <ListBox Grid.Column="4" Grid.Row="6" SelectionMode="Multiple" ItemsSource="{Binding AllSports}" DisplayMemberPath="Name">
             <i:Interaction.Behaviors>
-                <uiProperties:MyObjectListBoxSelectionBehavior SelectedItems="{Binding SelectedSports}"/>
+                <uiProperties:SportListBoxSelectionBehavior SelectedItems="{Binding SelectedSports}"/>
             </i:Interaction.Behaviors>
         </ListBox>
 

@@ -6,8 +6,15 @@
              xmlns:local="clr-namespace:SportClub.UI.Views"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:uiProperties="clr-namespace:SportClub.UI.UIProperties"
-             mc:Ignorable="d" Background="White" FontSize="14"
+             mc:Ignorable="d"  FontSize="18"
              d:DesignHeight="450" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="Background" Value="CornflowerBlue"></Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -18,7 +25,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" MinHeight="50"/>
+                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -28,12 +36,12 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-        <Button Content="Terug" Margin="10" Grid.ColumnSpan="2" Width="100" HorizontalAlignment="Left" Background="Aqua" x:Name="BackButton"/>
-        <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" FontSize="32" Margin="0 0 0 20" Text="Leden beheer"/>
+        <Button Content="Hoofdmenu" Margin="10" Grid.ColumnSpan="2" Height="40" Width="150" HorizontalAlignment="Left" Cursor="Hand" x:Name="BackButton"/>
+        <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" FontSize="32" Margin="20" Text="Leden beheer"/>
 
         <TextBlock Grid.Column="1" Grid.Row="1">Ledenlijst</TextBlock>
         <ListBox x:Name="MemberList" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1" Width="250" Height="300" ItemsSource="{Binding MemberList}" DisplayMemberPath="MemberDisplay" SelectedItem="{Binding SelectedMember}" Margin="10" />
-        <Button x:Name="UpdateMemberList" Grid.Column="1" Grid.Row="3" Margin="10" Width="150">Laad nieuwe ledenlijst </Button>
+        <Button x:Name="UpdateMemberList" Grid.Column="1" Grid.Row="3" Margin="10" Width="200" Cursor="Hand" Padding="5">Laad nieuwe ledenlijst </Button>
 
 
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Column="4" Grid.Row="2" Margin="10">
@@ -43,7 +51,7 @@
             </DockPanel>
 
             <DockPanel >
-           <TextBlock Margin="10" MinWidth="80">VoorNaam:</TextBlock>
+           <TextBlock Margin="10" MinWidth="50">VoorNaam:</TextBlock>
             <TextBox x:Name="FirstName" MinWidth="200" Margin="10" />
                 <TextBlock Margin="10" MinWidth="80">AchterNaam:</TextBlock>
             <TextBox x:Name="LastName" MinWidth="200" Margin="10"/>
@@ -77,7 +85,7 @@
                 <TextBox x:Name="Postcode" MinWidth="200" Margin=" 10"/>
             </DockPanel>
             <DockPanel>
-                <Button x:Name="EditMember" Content="Aanpassen" Width="100" HorizontalAlignment="Right" Margin="10 30 30 10"/>
+                <Button x:Name="EditMember" Content="Aanpassen" Width="120"  Padding="5" HorizontalAlignment="Right" Cursor="Hand" Margin="10 30 30 10"/>
             </DockPanel>
         </StackPanel>
 

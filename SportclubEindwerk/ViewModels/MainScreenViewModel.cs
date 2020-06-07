@@ -1,12 +1,9 @@
-﻿using Caliburn.Micro;
-using Sportclub.UI.EventModels;
+﻿using System;
+using Caliburn.Micro;
+using Microsoft.Win32;
 using SportClub.Data.EntityModels;
 using SportClub.Data.ServiceContracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using SportClub.UI.EventModels;
-using Excel = Microsoft.Office.Interop.Excel;
 
 
 
@@ -15,15 +12,18 @@ namespace SportClub.UI.ViewModels
     public class MainScreenViewModel : Screen , IHandle<MainScreenEvent>
     {
 
-        private readonly IMaterialService _materialService;
+        
         private readonly IEventAggregator _event;
+        private readonly IClubService _clubService;
 
 
-        public MainScreenViewModel( IEventAggregator events)
+        public MainScreenViewModel( IEventAggregator events, IClubService clubService)
         {
            
             _event = events;
             events.Subscribe(this);
+
+            _clubService = clubService;
         }
 
         private Club _club;
@@ -62,6 +62,32 @@ namespace SportClub.UI.ViewModels
         public void MemberManagement()
         {
             _event.PublishOnUIThread(new MemberEvent(_club));
+        }
+
+        public void CreateMail()
+        {
+            _event.PublishOnUIThread(new MailEvent(_club));
+        }
+
+
+        public void ChangeLogo()
+        {
+
+            OpenFileDialog f = new OpenFileDialog
+            {
+                Filter = "Image files (*.jpg, *.png) | *.jpg; *.png"
+            };
+
+            if (f.ShowDialog() == true)
+            {
+
+                Uri fileUri = new Uri(f.FileName);
+
+                _club.ClubLogo = fileUri.ToString();
+            }
+
+            _clubService.UpdateSportClub(_club);
+            _event.PublishOnUIThread(new MainScreenEvent(_club));
         }
 
         public void Handle(MainScreenEvent message)
@@ -103,43 +129,43 @@ namespace SportClub.UI.ViewModels
 
 
 
-        public void ReadMaterial()
-        {
-            Excel.Application tryout = new Excel.Application();
+        //public void ReadMaterial()
+        //{
+        //    Excel.Application tryout = new Excel.Application();
 
-            Excel.Workbook workbook = tryout.Workbooks.Open("C:\\Users\\user\\Desktop\\Eindwerk\\Materiaal.xlsx");
+        //    Excel.Workbook workbook = tryout.Workbooks.Open("C:\\Users\\user\\Desktop\\Eindwerk\\Materiaal.xlsx");
 
-            Excel.Worksheet worksheet = workbook.Sheets[1];
+        //    Excel.Worksheet worksheet = workbook.Sheets[1];
 
-            Excel.Range range = worksheet.UsedRange;
+        //    Excel.Range range = worksheet.UsedRange;
 
-            Dictionary<string, Decimal> materialList = new Dictionary<string, decimal>();
-            string key;
+        //    Dictionary<string, Decimal> materialList = new Dictionary<string, decimal>();
+        //    string key;
 
-            Decimal price;
+        //    Decimal price;
 
-            for (int i = 0; i < range.Rows.Count; i++)
-            {
-                key = range.Cells[i, 1].Value.ToString();
-                price = range.Cells[i, 2].Value.ToString();
+        //    for (int i = 0; i < range.Rows.Count; i++)
+        //    {
+        //        key = range.Cells[i, 1].Value.ToString();
+        //        price = range.Cells[i, 2].Value.ToString();
 
-                Material material = new Material();
-                material.MaterialName = key;
-                material.Price = price;
+        //        Material material = new Material();
+        //        material.MaterialName = key;
+        //        material.Price = price;
                 
 
-                _materialService.CreateMaterial(material);
+        //        _materialService.CreateMaterial(material);
 
-            }
+        //    }
 
-            foreach (Excel.Range item in range)
-            {
-                key = item.Cells[1, 1].ToString();
+        //    foreach (Excel.Range item in range)
+        //    {
+        //        key = item.Cells[1, 1].ToString();
 
 
-            }
+        //    }
 
-        }
+        //}
 
     }
 }

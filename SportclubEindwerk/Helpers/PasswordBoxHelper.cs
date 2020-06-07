@@ -21,7 +21,7 @@ namespace Sportclub.UI.Helpers
             {
                 // this funny little dance here ensures that we've hooked the
                 // PasswordChanged event once, and only once.
-                box.PasswordChanged -= PasswordChanged;
+               box.PasswordChanged -= PasswordChanged;
                 box.PasswordChanged += PasswordChanged;
             }
 
