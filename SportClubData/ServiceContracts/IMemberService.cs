@@ -1,7 +1,6 @@
-﻿using System;
+﻿using SportClub.Data.EntityModels;
+using System;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
-using SportClub.Data.EntityModels;
 
 namespace SportClub.Data.ServiceContracts
 {
@@ -14,7 +13,7 @@ namespace SportClub.Data.ServiceContracts
 
        void UpdateMember(Member member);
 
-        IList<Member> GetMembers();
+        IList<Member> GetSportClubMembers(Guid clubId);
 
         bool CheckMember(Guid memberId);
 

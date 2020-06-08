@@ -1,14 +1,13 @@
-﻿using System.ComponentModel;
-using System.Data.Entity.Migrations;
-using System.Linq;
+﻿using SportClub.Data.DataContext;
 using SportClub.Data.EntityModels;
 using SportClub.Data.ServiceContracts;
-using SportClub.Data.DataContext;
+using System.Data.Entity.Migrations;
+using System.Linq;
 
 
 namespace SportClub.Data.Services
 {
-  public class ClubService : IClubService
+    public class ClubService : IClubService
   {
       private readonly SportClubDBContext _dbContext;
 

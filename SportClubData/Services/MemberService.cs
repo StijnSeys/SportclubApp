@@ -33,6 +33,7 @@ namespace SportClub.Data.Services
         {
             var updateMember = GetMember(member.MemberId);
 
+            updateMember.MemberId = member.MemberId;
             updateMember.Address = member.Address;
             updateMember.Email = member.Email;
             updateMember.FirstName = member.FirstName;
@@ -42,9 +43,12 @@ namespace SportClub.Data.Services
 
             _context.SaveChanges();
         }
-        public IList<Member> GetMembers()
+        public IList<Member> GetSportClubMembers(Guid clubId)
         {
-            throw new NotImplementedException();
+
+            var members = _context.Members.Where(m => m.SportClubs.Any(c => c.SportClubId == clubId));
+            return members.ToList();
+
         }
 
 

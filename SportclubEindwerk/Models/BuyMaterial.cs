@@ -1,9 +1,5 @@
-﻿using System;
+﻿using SportClub.Data.EntityModels;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
-using SportClub.Data.EntityModels;
-using SportClub.UI.Annotations;
 
 namespace SportClub.UI.Models
 {

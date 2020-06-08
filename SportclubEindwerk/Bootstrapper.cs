@@ -2,7 +2,6 @@
 using Caliburn.Micro;
 using Sportclub.UI.Helpers;
 using SportClub.Data.DataContext;
-using SportClub.Data.FillDataHelpers;
 using SportClub.Data.ServiceContracts;
 using SportClub.Data.Services;
 using SportClub.UI.ViewModels;

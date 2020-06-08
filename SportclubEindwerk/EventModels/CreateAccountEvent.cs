@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SportClub.UI.EventModels
+﻿namespace SportClub.UI.EventModels
 {
- public class CreateAccountEvent
+    public class CreateAccountEvent
     {
       
     }

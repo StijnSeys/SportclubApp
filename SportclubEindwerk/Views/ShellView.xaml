@@ -4,14 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"  Background="LightBlue"
-        Title="ShellView" Height="800" Width="1200">
+        Title="Sport" Height="800" Width="1200">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
         <DockPanel>
       <Menu DockPanel.Dock="Top" FontSize="22" Background="CornflowerBlue"  >
-            <MenuItem Header="_Account" Foreground="White" FontWeight="Bold" Cursor="Hand">
-                <MenuItem x:Name="LoginScreen" Header="Uitloggen" Background="LightCoral" Cursor="Hand"/>
+          <Menu.ItemsPanel>
+              <ItemsPanelTemplate>
+                  <DockPanel HorizontalAlignment="Stretch"/>
+              </ItemsPanelTemplate>
+          </Menu.ItemsPanel>
+                <MenuItem Header="_Account" Foreground="White" FontWeight="Bold" Cursor="Hand">
+                    <MenuItem x:Name="LoginScreen" Header="Uitloggen" FontSize="18" Background="LightCoral" Cursor="Hand"/>
+          </MenuItem >
+                <MenuItem Header="Admin" Foreground="White" FontWeight="Bold" Cursor="Hand" HorizontalAlignment="Right">
+                    <MenuItem x:Name="AdminPage" Header="Update" FontSize="18" Cursor="Hand" Background="Brown"></MenuItem>
           </MenuItem>
       </Menu>
         <Grid>

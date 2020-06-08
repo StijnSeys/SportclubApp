@@ -3,8 +3,6 @@ using Microsoft.Office.Interop.Word;
 using Microsoft.Win32;
 using SportClub.Data.EntityModels;
 using SportClub.UI.EventModels;
-using System;
-using System.Windows;
 using Shape = Microsoft.Office.Interop.Word.Shape;
 
 namespace SportClub.UI.ViewModels
@@ -115,6 +113,7 @@ namespace SportClub.UI.ViewModels
             }
         }
 
+
         public void CreateWord()
         {
 
@@ -157,26 +156,21 @@ namespace SportClub.UI.ViewModels
                     }
 
                 }
-
-                //adding text to document
-                document.Content.SetRange(0, 0);
-                document.Content.Text = WordText;
-
                 //Add the Logo to the WordFile
                 if (YesLogo)
                 {
-                    
-                    object start_of_doc = "\\startofdoc";
+
+                    object startOfDoc = "\\startofdoc";
 
                     // Get a Range at the start of the document.
-                    Range start = document.Bookmarks.get_Item(ref start_of_doc).Range;
+                    Range start = document.Bookmarks.get_Item(ref startOfDoc).Range;
 
                     // Add the picture to the Range's InlineShapes.
-                   
-                   InlineShape inline_shape = start.InlineShapes.AddPicture(ClubLogo);
+
+                    InlineShape inlineShape = start.InlineShapes.AddPicture(ClubLogo);
 
                     // Format the picture.
-                    Shape shape = inline_shape.ConvertToShape();
+                    Shape shape = inlineShape.ConvertToShape();
 
                     // Wrap text around the picture's square.
                     shape.WrapFormat.Type = WdWrapType.wdWrapSquare;
@@ -184,7 +178,15 @@ namespace SportClub.UI.ViewModels
                     // Align the picture on the upper right.
                     shape.Left = (float)WdShapePosition.wdShapeRight;
                     shape.Top = (float)WdShapePosition.wdShapeTop;
+                    shape.Width = 100;
+                    shape.Height = 100;
                 }
+  
+                //adding text to document
+                  document.Content.SetRange(0, 0);
+                document.Content.Text = WordText;
+
+              
 
 
                 //Save the document
@@ -203,9 +205,8 @@ namespace SportClub.UI.ViewModels
                 }
 
                 document.Close();
-                document = null;
                 winword.Quit();
-                winword = null;
+               
             
             _event.PublishOnUIThread(new MailEvent(_club, _filePath.ToString()));
 
@@ -222,7 +223,7 @@ namespace SportClub.UI.ViewModels
 
         }
 
-
+        
         private void ClearForm()
         {
             WordFooter = "";

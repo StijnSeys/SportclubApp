@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:SportClub.UI.Views"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:uiProperties="clr-namespace:SportClub.UI.UIProperties"
-             mc:Ignorable="d"  FontSize="18"
-             d:DesignHeight="450" d:DesignWidth="1000">
+             mc:Ignorable="d"  FontSize="16"
+             d:DesignHeight="550" d:DesignWidth="1000">
     <UserControl.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Padding" Value="5"></Setter>
@@ -39,9 +39,12 @@
         <Button Content="Hoofdmenu" Margin="10" Grid.ColumnSpan="2" Height="40" Width="150" HorizontalAlignment="Left" Cursor="Hand" x:Name="BackButton"/>
         <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" FontSize="32" Margin="20" Text="Leden beheer"/>
 
-        <TextBlock Grid.Column="1" Grid.Row="1">Ledenlijst</TextBlock>
-        <ListBox x:Name="MemberList" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1" Width="250" Height="300" ItemsSource="{Binding MemberList}" DisplayMemberPath="MemberDisplay" SelectedItem="{Binding SelectedMember}" Margin="10" />
+        <StackPanel Grid.Column="1" Grid.Row="2">
+        <TextBlock Margin="10 0" >Ledenlijst:</TextBlock>
+        <ListBox x:Name="MemberList"  Width="250" Height="300" ItemsSource="{Binding MemberList}" DisplayMemberPath="MemberDisplay" SelectedItem="{Binding SelectedMember}" Margin="10" />
+        </StackPanel>
         <Button x:Name="UpdateMemberList" Grid.Column="1" Grid.Row="3" Margin="10" Width="200" Cursor="Hand" Padding="5">Laad nieuwe ledenlijst </Button>
+        
 
 
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Column="4" Grid.Row="2" Margin="10">
@@ -58,13 +61,14 @@
             </DockPanel>
 
             <DockPanel>
-                <TextBlock Margin="10" MinWidth="80">Email:</TextBlock>
-                <TextBox x:Name="Email" Grid.Column="4" Grid.Row="2" Width="200" Margin="10" HorizontalAlignment="Left"/>
+                    <DockPanel HorizontalAlignment="Center">
+                <TextBlock Margin="10" TextAlignment="Right">Email:</TextBlock>
+                <TextBox x:Name="Email" Width="250" Margin="10"/>
+                    </DockPanel>
+                <!--TODO--><!--
                 <TextBlock Margin="10" MinWidth="80">Sport(en):</TextBlock>
-
-                <!--TODO-->
-                <ListBox x:Name="MemberClubSports" Grid.Column="4" Grid.Row="6" SelectionMode="Multiple" Margin="10">
-                </ListBox>
+                <ListBox x:Name="MemberClubSports" Grid.Column="4" Grid.Row="6" SelectionMode="Multiple" Margin="10">--><!--
+                </ListBox>-->
             </DockPanel>
 
             <DockPanel>
@@ -74,19 +78,20 @@
             <DockPanel >
                 <TextBlock Margin="10" MinWidth="80">Straat:</TextBlock>
                 <TextBox x:Name="Street" Width="200" Margin=" 10" />
-                <TextBlock Margin="9" MinWidth="80">Huisnummer:</TextBlock>
+                <TextBlock Margin="9" MinWidth="100">Huisnummer:</TextBlock>
                 <TextBox x:Name="Number" Width="200" Margin=" 10"/>
             </DockPanel>
 
             <DockPanel >
                 <TextBlock Margin="10" MinWidth="80">Stad:</TextBlock>
                 <TextBox x:Name="City" Width="200" Margin=" 10" />
-                <TextBlock Margin="10" MinWidth="80">Postcode:</TextBlock>
+                <TextBlock Margin="10" MinWidth="100">Postcode:</TextBlock>
                 <TextBox x:Name="Postcode" MinWidth="200" Margin=" 10"/>
             </DockPanel>
-            <DockPanel>
-                <Button x:Name="EditMember" Content="Aanpassen" Width="120"  Padding="5" HorizontalAlignment="Right" Cursor="Hand" Margin="10 30 30 10"/>
-            </DockPanel>
+            <StackPanel>
+                <Button x:Name="EditMember" Content="Wijzig" Width="100"  Padding="5" HorizontalAlignment="Right" Cursor="Hand" Margin="10 30 10 10"/>
+                <Button x:Name="DeleteMember" Content="Verwijder" Width="100" Padding="5" FontSize="12" Background="Red" Margin="10 " HorizontalAlignment="Right" />
+            </StackPanel>
         </StackPanel>
 
 

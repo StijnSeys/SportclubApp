@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using Microsoft.Win32;
 using SportClub.Data.EntityModels;
 using SportClub.Data.ServiceContracts;
 using SportClub.UI.EventModels;
 using SportClub.UI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Windows;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace SportClub.UI.ViewModels
@@ -40,7 +40,8 @@ namespace SportClub.UI.ViewModels
             set
             {
                 _memberList = value;
-                NotifyOfPropertyChange(() => MemberList);
+                NotifyOfPropertyChange();
+               
             }
         }
 
@@ -82,6 +83,7 @@ namespace SportClub.UI.ViewModels
 
                 NotifyOfPropertyChange();
                 NotifyOfPropertyChange(() => CanEditMember);
+                NotifyOfPropertyChange(() => CanDeleteMember);
             }
         }
 
@@ -212,11 +214,67 @@ namespace SportClub.UI.ViewModels
             _memberService.UpdateMember(selectedMember);
 
             ClearFields();
-
-
-         
-
         }
+
+        public bool CanDeleteMember
+        {
+            get
+            {
+                bool output = false;
+
+                if (SelectedMember != null)
+                {
+                    output = true;
+                }
+
+                return output;
+            }
+        }
+
+
+        //remove selected member
+        public void DeleteMember()
+        {
+
+            string sMessageBoxText = "Wilt u " +SelectedMember.Member.FirstName + " verwijderen?" ;
+            string sCaption = "Verwijderen";
+
+            MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+            MessageBoxImage icnMessageBox = MessageBoxImage.Question;
+
+            MessageBoxResult rsltMessageBox = MessageBox.Show(sMessageBoxText, sCaption, btnMessageBox, icnMessageBox);
+
+            switch (rsltMessageBox)
+            {
+                case MessageBoxResult.Yes:
+
+                    Member selectedMember = SelectedMember.Member;
+
+                    //remove member in de existing list so the changes are visible for the user
+                    foreach (var member in MemberList)
+                    {
+                        if (member.Member ==  selectedMember)
+                        {
+                            _club.Members.Remove(member.Member);
+                        }
+                    }
+
+                    //make the change to the DB
+                    _memberService.DeleteMember(selectedMember);
+
+                    ClearFields();
+
+                    break;
+
+                case MessageBoxResult.No:
+
+                    return;
+
+            }
+
+           
+        }
+
 
         public void ClearFields()
         {
@@ -228,7 +286,7 @@ namespace SportClub.UI.ViewModels
             Postcode = 0;
             Number = null;
             SelectedMember = null;
-            MemberList.Clear();
+            MemberList= new List<MemberListModel>();
             foreach (var member in _club.Members)
             {
                 var model = new MemberListModel
@@ -348,7 +406,7 @@ namespace SportClub.UI.ViewModels
 
 
           //database calls
-          //add or update new members
+          //create or update new members
           foreach (var member in updateList)
           {
 
@@ -357,6 +415,7 @@ namespace SportClub.UI.ViewModels
               {
                  
                 memberExist.SportClubs.Add(_club); 
+
                 _memberService.UpdateMember(memberExist);
                   
               }
@@ -385,7 +444,9 @@ namespace SportClub.UI.ViewModels
               }
                
           }
+          
 
+          SelectedMember = null;
      } 
 
 
