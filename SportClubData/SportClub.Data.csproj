@@ -57,11 +57,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FillDataHelpers\MaterialData.cs" />
     <Compile Include="EntityModels\Club.cs" />
     <Compile Include="Migrations\202006051318293_extramaterial.cs" />
     <Compile Include="Migrations\202006051318293_extramaterial.designer.cs">
       <DependentUpon>202006051318293_extramaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006081356390_test2.cs" />
+    <Compile Include="Migrations\202006081356390_test2.designer.cs">
+      <DependentUpon>202006081356390_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006081359487_test3.cs" />
+    <Compile Include="Migrations\202006081359487_test3.designer.cs">
+      <DependentUpon>202006081359487_test3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Services\AddressService.cs" />
@@ -89,6 +96,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006051318293_extramaterial.resx">
       <DependentUpon>202006051318293_extramaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006081356390_test2.resx">
+      <DependentUpon>202006081356390_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006081359487_test3.resx">
+      <DependentUpon>202006081359487_test3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,7 +10,6 @@ namespace SportClub.Data.DataContext
         { 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<SportClubDBContext, Migrations.Configuration>());
         }
-        
         public  DbSet<Address> Addresses { get; set; }
         public DbSet<Material> Materials { get; set; }
         public DbSet<Member> Members { get; set; }

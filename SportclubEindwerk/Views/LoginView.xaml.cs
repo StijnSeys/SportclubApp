@@ -9,7 +9,10 @@ namespace SportClub.UI.Views
     {
         public LoginView()
         {
+
             InitializeComponent();
+
+
         }
 
 

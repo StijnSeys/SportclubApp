@@ -272,9 +272,7 @@ namespace SportClub.UI.ViewModels
 
             }
 
-           
         }
-
 
         public void ClearFields()
         {

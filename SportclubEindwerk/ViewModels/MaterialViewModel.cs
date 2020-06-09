@@ -88,6 +88,7 @@ namespace SportClub.UI.ViewModels
             }
 		}
 
+
         public string SubTotal
         {
             get

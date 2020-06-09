@@ -7,8 +7,8 @@ namespace SportClub.UI.ViewModels
     public class LoginViewModel : Screen , IHandle<LoginEvent> 
    {
 
-		private string _clubName = "Heulesport";
-        private string _password ="123456";
+		private string _clubName ;
+        private string _password ;
         private string _errorMessage;
         private string _okMessage;
 

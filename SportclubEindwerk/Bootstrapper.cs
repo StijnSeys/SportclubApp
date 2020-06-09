@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using SportClub.Data.FillDataHelpers;
 
 namespace SportClub.UI
 {
@@ -74,9 +75,9 @@ namespace SportClub.UI
             //load the ShellViewmodel on startup
             DisplayRootViewFor<ShellViewModel>();
 
-            ////  fill DB with Dummy content
-            //var dbClass = new tryoutDBClass();
-            //dbClass.DummyData();
+            //  fill DB with Dummy content
+            var dbClass = new tryoutDBClass();
+            dbClass.DummyData();
         }
 
         //Configure the container --> Copy/Paste  this is always the same
