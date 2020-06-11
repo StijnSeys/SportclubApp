@@ -82,6 +82,6 @@
         </ListBox>
 
         <Button x:Name="RegisterClub" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="4" HorizontalAlignment="Center" Padding="20 5" Margin="0 20">Registreren</Button>
-        
+
     </Grid>
 </UserControl>

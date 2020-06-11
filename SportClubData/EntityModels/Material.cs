@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SportClub.Data.EntityModels
 {
- public class Material
+    public class Material
     {
         [Key]
         [Required]
@@ -15,6 +15,6 @@ namespace SportClub.Data.EntityModels
 
         public virtual Sport Sport { get; set; }
 
-        
+
     }
 }

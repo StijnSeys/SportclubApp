@@ -5,7 +5,7 @@ using SportClub.Data.EntityModels;
 
 namespace SportClub.Data.FillDataHelpers
 {
- public class tryoutDBClass
+    public class tryoutDBClass
     {
 
         public void DummyData()
@@ -15,7 +15,7 @@ namespace SportClub.Data.FillDataHelpers
                 //dummy member
                 var member1 = new Member()
                 {
-                    MemberId= Guid.NewGuid(),
+                    MemberId = Guid.NewGuid(),
                     Email = "stijnseys@gmail.com",
                     FirstName = "stijn",
                     LastName = "seys",
@@ -41,7 +41,7 @@ namespace SportClub.Data.FillDataHelpers
                     LastName = "deo",
                     SportClubs = new List<Club>(),
                     Sports = new List<Sport>()
-                    
+
                 };
 
                 //dummy sportclub
@@ -49,7 +49,7 @@ namespace SportClub.Data.FillDataHelpers
                 {
                     Name = "de dulle sporters",
                     Password = "123456",
-                    SportClubId =  Guid.NewGuid(),
+                    SportClubId = Guid.NewGuid(),
                     ClubLogo = "C:\\Users\\user\\Desktop\\Eindwerk\\afbeeldingen\\Diegem-Sport.png",
                     Members = new List<Member>(),
                     Sports = new List<Sport>()
@@ -74,8 +74,8 @@ namespace SportClub.Data.FillDataHelpers
                     City = "kortrijk",
                     Street = "kortrijkstraat",
                     Number = "10a",
-                    PostCode  = 8500
-                    
+                    PostCode = 8500
+
                 };
                 var address2 = new Address()
                 {
@@ -137,8 +137,8 @@ namespace SportClub.Data.FillDataHelpers
 
                 var material2 = new Material()
                 {
-                    MaterialId  = Guid.NewGuid(),
-                    MaterialName  = "Tennisbal",
+                    MaterialId = Guid.NewGuid(),
+                    MaterialName = "Tennisbal",
                     Price = 10.0m
                 };
                 var material2A = new Material()

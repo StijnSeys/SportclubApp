@@ -9,10 +9,8 @@ using SportClub.UI.Models;
 
 namespace SportClub.UI.UIProperties
 {
-
     //Know problem with binding multiple items out of a listbox.SelectedItems -> not allowed
     //source  @Bavo Ketels  -> https://tyrrrz.me/blog/wpf-listbox-selecteditems-twoway-binding
-
     public class ListBoxSelectionBehavior<T> : Behavior<ListBox>
     {
         public static readonly DependencyProperty SelectedItemsProperty =
@@ -97,9 +95,9 @@ namespace SportClub.UI.UIProperties
 
     //WPF doesn’t support generic behaviors. subtype the class for each specific data type
     public class SportListBoxSelectionBehavior : ListBoxSelectionBehavior<Sport>
-  {
+    {
 
-  }
+    }
 
     public class MailListModelListBoxSelectionBehavior : ListBoxSelectionBehavior<MailListModel>
     {

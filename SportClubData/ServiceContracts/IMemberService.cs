@@ -6,12 +6,12 @@ namespace SportClub.Data.ServiceContracts
 {
     public interface IMemberService
     {
-        
+
         void CreateMember(Member member);
 
         void DeleteMember(Member member);
 
-       void UpdateMember(Member member);
+        void UpdateMember(Member member);
 
         IList<Member> GetSportClubMembers(Guid clubId);
 

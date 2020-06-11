@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SportClub.Data.EntityModels
 {
-   public class Member
+    public class Member
     {
-        [Key] 
+        [Key]
         [Required]
         public Guid MemberId { get; set; }
         [Required]

@@ -49,6 +49,6 @@
             <Button x:Name="OrderMaterial"  Margin="20" Cursor="Hand" >Materiaal beheer</Button>
             <Button x:Name="CreateMail"  Margin="20" Cursor="Hand" >Mail opmaken</Button>
         </StackPanel>
-        
+
     </Grid>
 </UserControl>

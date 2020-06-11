@@ -12,7 +12,6 @@ namespace SportClub.Data.EntityModels
         [Required]
         public string Name { get; set; }
         public string ClubLogo { get; set; }
-        public string ClubColor { get; set; }
         [Required]
         public string Password { get; set; }
 

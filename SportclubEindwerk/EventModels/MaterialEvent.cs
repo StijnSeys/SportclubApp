@@ -13,8 +13,5 @@ namespace SportClub.UI.EventModels
             Club = club;
         }
 
-
-
-
     }
 }

@@ -24,7 +24,7 @@ namespace SportClub.UI
         {
             Initialize();
 
-          //  Add the passwordboxHelper Class
+            //  Add the passwordboxHelper Class
             ConventionManager.AddElementConvention<PasswordBox>(
                 PasswordBoxHelper.BoundPasswordProperty,
                 "Password",
@@ -34,12 +34,12 @@ namespace SportClub.UI
 
         protected override void Configure()
         {
-            
-             _container.Instance(_container);
+
+            _container.Instance(_container);
 
             _container.Singleton<IWindowManager, WindowManager>();
             _container.Singleton<IEventAggregator, EventAggregator>();
-           
+
             //Methodes to fill the _container for DI
             RegisterDatabase();
             RegisterServices();
@@ -51,7 +51,7 @@ namespace SportClub.UI
         }
         private void RegisterServices()
         {
-            
+
             //find all ViewModel classes and put in _container for DI(not a good practice but possible to use in small projects )
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
@@ -76,8 +76,8 @@ namespace SportClub.UI
             DisplayRootViewFor<ShellViewModel>();
 
             //  fill DB with Dummy content
-            var dbClass = new tryoutDBClass();
-            dbClass.DummyData();
+            //var dbClass = new tryoutDBClass();
+            // dbClass.DummyData();
         }
 
         //Configure the container --> Copy/Paste  this is always the same

@@ -3,11 +3,11 @@ using SportClub.Data.EntityModels;
 
 namespace SportClub.Data.ServiceContracts
 {
-  public interface ISportService
-  {
+    public interface ISportService
+    {
 
-      IList<Sport> GetSports();
+        IList<Sport> GetSports();
 
-      Sport GetSportByName(string name);
-  }
+        Sport GetSportByName(string name);
+    }
 }

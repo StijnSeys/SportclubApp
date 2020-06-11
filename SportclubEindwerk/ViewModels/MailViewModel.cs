@@ -256,7 +256,7 @@ namespace SportClub.UI.ViewModels
                     }
 
                 }
-             
+
                 if (!string.IsNullOrEmpty(Bcc))
                 {
 
@@ -284,7 +284,7 @@ namespace SportClub.UI.ViewModels
                         MessageBox.Show("Kan het Word document niet laden ");
                     else
                     {
-                        Attachment attachment = oMailItem.Attachments.Add(FilePath,OlAttachmentType.olByValue, 1 , FilePath);
+                        Attachment attachment = oMailItem.Attachments.Add(FilePath, OlAttachmentType.olByValue, 1, FilePath);
                     }
                 }
 
@@ -297,7 +297,7 @@ namespace SportClub.UI.ViewModels
                 MessageBoxResult except = MessageBox.Show("Mail kan niet aangemaakt worden. Controleer de gegevens.");
             }
 
-            NotifyOfPropertyChange(()=> CanSendMail);
+            NotifyOfPropertyChange(() => CanSendMail);
 
         }
 
@@ -320,7 +320,7 @@ namespace SportClub.UI.ViewModels
                         Filter = "Word Documents|*.docx"
                     };
 
-                
+
                     if (openFileDialog.ShowDialog() == true)
                     {
 
@@ -342,7 +342,7 @@ namespace SportClub.UI.ViewModels
 
 
 
-        
+
         //private Sport _selectedSport;
 
         //public Sport SelectedSport
@@ -351,9 +351,9 @@ namespace SportClub.UI.ViewModels
         //    set
         //    {
         //        _selectedSport = value;
-                
+
         //        NotifyOfPropertyChange();
-               
+
         //    }
         //}
 
@@ -398,7 +398,7 @@ namespace SportClub.UI.ViewModels
             }
 
         }
-     
+
 
         public void Handle(MailEvent message)
         {

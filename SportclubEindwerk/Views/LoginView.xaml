@@ -15,13 +15,13 @@
     </UserControl.Resources>
 
     <Grid>
-         <Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
 
-             <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -35,24 +35,22 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-
         <TextBlock Text="Welkom" Margin="20" HorizontalAlignment="Center" Grid.ColumnSpan="5" FontSize="36" FontWeight="Bold"/>
 
-       
         <TextBlock x:Name="ErrorMessage" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Center"   Margin="0 0 0 10" Foreground="Red"  TextWrapping="Wrap" MaxWidth="400" ></TextBlock>
 
         <GroupBox Header="Login" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" Width="500" BorderThickness="3" BorderBrush="CornflowerBlue" Foreground="Blue" Padding="10" FontWeight="Bold"  >
             <StackPanel>
                 <TextBlock  Margin="10">ClubNaam:</TextBlock>
-                 <TextBox x:Name="ClubName" MinWidth="350" Margin=" 10" Padding="5"/>
-                 <TextBlock  Margin="10">Paswoord:</TextBlock>
+                <TextBox x:Name="ClubName" MinWidth="350" Margin=" 10" Padding="5"/>
+                <TextBlock  Margin="10">Paswoord:</TextBlock>
                 <PasswordBox x:Name="Password" MinWidth="150" Margin=" 10" Padding="5"/>
             </StackPanel>
         </GroupBox>
         <TextBlock x:Name="OkMessage" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="5" HorizontalAlignment="Center"   Margin="0 0 0 10" Foreground="Green"  TextWrapping="Wrap" MaxWidth="400"></TextBlock>
         <StackPanel  Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3">
             <Button x:Name="LogIn" HorizontalAlignment="Center" Padding="20 5" Margin="0 20" Cursor="Hand"  >Inloggen</Button>
-            <Button x:Name="CreateAccount"  Grid.Column="3" Grid.Row="7" Background="Transparent" Foreground="Blue" FontSize="18" BorderThickness="0" Cursor="Hand" >Nog geen Account?</Button>
+            <Button x:Name="CreateAccount"  Background="Transparent" Foreground="Blue" FontSize="18" BorderThickness="0" Cursor="Hand" >Nog geen Account?</Button>
         </StackPanel>
     </Grid>
 </UserControl>

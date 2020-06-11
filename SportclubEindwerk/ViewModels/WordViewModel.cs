@@ -7,7 +7,7 @@ using Shape = Microsoft.Office.Interop.Word.Shape;
 
 namespace SportClub.UI.ViewModels
 {
-    public class WordViewModel : Screen , IHandle<WordEvent>
+    public class WordViewModel : Screen, IHandle<WordEvent>
     {
 
         private readonly IEventAggregator _event;
@@ -22,7 +22,7 @@ namespace SportClub.UI.ViewModels
         }
 
 
-        private string _clubLogo ;
+        private string _clubLogo;
 
         public string ClubLogo
         {
@@ -43,7 +43,7 @@ namespace SportClub.UI.ViewModels
             {
                 _wordTitle = value;
                 NotifyOfPropertyChange();
-                NotifyOfPropertyChange(()=>CanCreateWord);
+                NotifyOfPropertyChange(() => CanCreateWord);
             }
         }
 
@@ -56,7 +56,7 @@ namespace SportClub.UI.ViewModels
             {
                 _wordText = value;
                 NotifyOfPropertyChange();
-                NotifyOfPropertyChange(()=>CanCreateWord);
+                NotifyOfPropertyChange(() => CanCreateWord);
             }
         }
 
@@ -80,7 +80,7 @@ namespace SportClub.UI.ViewModels
             get { return _yesLogo; }
             set
             {
-             
+
                 _yesLogo = value;
                 NotifyOfPropertyChange();
             }
@@ -98,7 +98,7 @@ namespace SportClub.UI.ViewModels
                 NotifyOfPropertyChange();
             }
         }
-         public bool CanCreateWord
+        public bool CanCreateWord
         {
             get
             {
@@ -117,97 +117,97 @@ namespace SportClub.UI.ViewModels
         public void CreateWord()
         {
 
-                //Create an instance for word app
-                Microsoft.Office.Interop.Word.Application winword = new Microsoft.Office.Interop.Word.Application();
+            //Create an instance for word app
+            Microsoft.Office.Interop.Word.Application winword = new Microsoft.Office.Interop.Word.Application();
 
-                //Set animation status for word application
-                winword.ShowAnimation = false;
+            //Set animation status for word application
+            winword.ShowAnimation = false;
 
-                //Set status for word application is to be visible or not.
-                winword.Visible = false;
+            //Set status for word application is to be visible or not.
+            winword.Visible = false;
 
-                //Create a new document
-                _Document document = winword.Documents.Add();
+            //Create a new document
+            _Document document = winword.Documents.Add();
 
-                //Add header into the document
-                foreach (Section section in document.Sections)
+            //Add header into the document
+            foreach (Section section in document.Sections)
+            {
+                //Get the header range and add the header details.
+                Range headerRange = section.Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
+                headerRange.Fields.Add(headerRange, WdFieldType.wdFieldPage);
+                headerRange.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+                headerRange.Font.ColorIndex = WdColorIndex.wdBlue;
+                headerRange.Font.Size = 18;
+                headerRange.Text = WordTitle;
+            }
+
+            if (!string.IsNullOrEmpty(WordFooter))
+            {
+
+                //Add the footers into the document
+                foreach (Section wordSection in document.Sections)
                 {
-                    //Get the header range and add the header details.
-                    Range headerRange = section.Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
-                    headerRange.Fields.Add(headerRange, WdFieldType.wdFieldPage);
-                    headerRange.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
-                    headerRange.Font.ColorIndex = WdColorIndex.wdBlue;
-                    headerRange.Font.Size = 18;
-                    headerRange.Text = WordTitle;
+                    //Get the footer range and add the footer details.
+                    Range footerRange = wordSection.Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
+                    footerRange.Font.ColorIndex = WdColorIndex.wdDarkRed;
+                    footerRange.Font.Size = 10;
+                    footerRange.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+                    footerRange.Text = WordFooter;
                 }
 
-                if (!string.IsNullOrEmpty(WordFooter))
-                {
+            }
+            //Add the Logo to the WordFile
+            if (YesLogo)
+            {
 
-                    //Add the footers into the document
-                    foreach (Section wordSection in document.Sections)
-                    {
-                        //Get the footer range and add the footer details.
-                        Range footerRange = wordSection.Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
-                        footerRange.Font.ColorIndex = WdColorIndex.wdDarkRed;
-                        footerRange.Font.Size = 10;
-                        footerRange.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
-                        footerRange.Text = WordFooter;
-                    }
+                object startOfDoc = "\\startofdoc";
+
+                // Get a Range at the start of the document.
+                Range start = document.Bookmarks.get_Item(ref startOfDoc).Range;
+
+                // Add the picture to the Range's InlineShapes.
+
+                InlineShape inlineShape = start.InlineShapes.AddPicture(ClubLogo);
+
+                // Format the picture.
+                Shape shape = inlineShape.ConvertToShape();
+
+                // Wrap text around the picture's square.
+                shape.WrapFormat.Type = WdWrapType.wdWrapSquare;
+
+                // Align the picture on the upper right.
+                shape.Left = (float)WdShapePosition.wdShapeRight;
+                shape.Top = (float)WdShapePosition.wdShapeTop;
+                shape.Width = 100;
+                shape.Height = 100;
+            }
+
+            //adding text to document
+            document.Content.SetRange(0, 0);
+            document.Content.Text = WordText;
+
+
+
+
+            //Save the document
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Word document|*.docx";
+            saveFileDialog1.Title = "Sla het document op";
+            if (saveFileDialog1.ShowDialog() == true)
+            {
+                string docName = saveFileDialog1.FileName;
+                if (docName.Length > 0)
+                {
+                    _filePath = docName;
+                    document.SaveAs(ref _filePath);
 
                 }
-                //Add the Logo to the WordFile
-                if (YesLogo)
-                {
+            }
 
-                    object startOfDoc = "\\startofdoc";
-
-                    // Get a Range at the start of the document.
-                    Range start = document.Bookmarks.get_Item(ref startOfDoc).Range;
-
-                    // Add the picture to the Range's InlineShapes.
-
-                    InlineShape inlineShape = start.InlineShapes.AddPicture(ClubLogo);
-
-                    // Format the picture.
-                    Shape shape = inlineShape.ConvertToShape();
-
-                    // Wrap text around the picture's square.
-                    shape.WrapFormat.Type = WdWrapType.wdWrapSquare;
-
-                    // Align the picture on the upper right.
-                    shape.Left = (float)WdShapePosition.wdShapeRight;
-                    shape.Top = (float)WdShapePosition.wdShapeTop;
-                    shape.Width = 100;
-                    shape.Height = 100;
-                }
-  
-                //adding text to document
-                  document.Content.SetRange(0, 0);
-                document.Content.Text = WordText;
-
-              
+            document.Close();
+            winword.Quit();
 
 
-                //Save the document
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.Filter = "Word document|*.docx";
-                saveFileDialog1.Title = "Sla het document op";
-                if (saveFileDialog1.ShowDialog() == true)
-                {
-                    string docName = saveFileDialog1.FileName;
-                    if (docName.Length > 0)
-                    {
-                        _filePath = docName;
-                        document.SaveAs(ref _filePath);
-                       
-                    }
-                }
-
-                document.Close();
-                winword.Quit();
-               
-            
             _event.PublishOnUIThread(new MailEvent(_club, _filePath.ToString()));
 
             ClearForm();
@@ -223,7 +223,7 @@ namespace SportClub.UI.ViewModels
 
         }
 
-        
+
         private void ClearForm()
         {
             WordFooter = "";

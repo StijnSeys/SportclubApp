@@ -39,20 +39,20 @@
         <TextBlock Text="Materiaal Shop" FontSize="32" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3" TextAlignment="Center" Margin="20"/>
         <TextBlock Grid.Row="1" Grid.Column="1" Text="Materialen"/>
         <ListBox x:Name="Materials" Grid.Column="1" Grid.Row="2" Cursor="Hand" MinHeight="200" MinWidth="200" SelectedItem="{Binding SelectedMaterial}">
-          <ListBox.ItemTemplate>
-              <DataTemplate>
-                  <StackPanel Orientation="Vertical">
-                     <TextBlock Text="{Binding MaterialName}"/>
-                     <StackPanel Orientation="Horizontal">
-                         <TextBlock FontSize="14" Text="Prijs: "/>
-                         <TextBlock FontSize="14" Text="{Binding Price}"/>
-                         <TextBlock FontSize="14" Text="€"/>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding MaterialName}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="14" Text="Prijs: "/>
+                            <TextBlock FontSize="14" Text="{Binding Price}"/>
+                            <TextBlock FontSize="14" Text="€"/>
                         </StackPanel>
-                </StackPanel>
-              </DataTemplate>
+                    </StackPanel>
+                </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-       
+
         <StackPanel Orientation="Vertical" Grid.Column="2" Grid.Row="2" Margin="20">
             <TextBlock Text="Hoeveelheid"/>
             <TextBox x:Name="MaterialQuantity" MinWidth="100"/>

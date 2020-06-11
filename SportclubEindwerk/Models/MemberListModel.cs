@@ -2,12 +2,12 @@
 
 namespace SportClub.UI.Models
 {
-    public  class MemberListModel
+    public class MemberListModel
     {
 
         public Member Member { get; set; }
 
-        public string MemberDisplay => $"{Member.FirstName} {Member.LastName}" ;
+        public string MemberDisplay => $"{Member.FirstName} {Member.LastName}";
 
 
 

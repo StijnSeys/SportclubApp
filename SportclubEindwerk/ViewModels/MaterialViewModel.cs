@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace SportClub.UI.ViewModels
 {
-    public class MaterialViewModel: Screen , IHandle<MaterialEvent>
+    public class MaterialViewModel : Screen, IHandle<MaterialEvent>
     {
 
         private readonly IMaterialService _materialService;
@@ -27,15 +27,15 @@ namespace SportClub.UI.ViewModels
 
         private BindingList<Material> _materials;
 
-		public BindingList<Material> Materials
-		{
-			get { return _materials; }
+        public BindingList<Material> Materials
+        {
+            get { return _materials; }
             set
             {
                 _materials = value;
-                NotifyOfPropertyChange(()=> Materials);
+                NotifyOfPropertyChange(() => Materials);
             }
-		}
+        }
 
         private Material _selectedMaterial = null;
 
@@ -45,7 +45,7 @@ namespace SportClub.UI.ViewModels
             set
             {
                 _selectedMaterial = value;
-                NotifyOfPropertyChange(()=> SelectedMaterial);
+                NotifyOfPropertyChange(() => SelectedMaterial);
                 NotifyOfPropertyChange(() => CanAddToCart);
             }
         }
@@ -63,9 +63,9 @@ namespace SportClub.UI.ViewModels
             }
         }
 
-        private BindingList<BuyMaterial> _cart = new BindingList<BuyMaterial>() ;
+        private BindingList<BuyMaterial> _cart = new BindingList<BuyMaterial>();
 
-        public BindingList<BuyMaterial> Cart 
+        public BindingList<BuyMaterial> Cart
         {
             get { return _cart; }
             set
@@ -77,16 +77,16 @@ namespace SportClub.UI.ViewModels
 
         private int _materialQuantity = 1;
 
-		public int MaterialQuantity
-		{
-			get { return _materialQuantity; }
+        public int MaterialQuantity
+        {
+            get { return _materialQuantity; }
             set
             {
                 _materialQuantity = value;
-                NotifyOfPropertyChange(()=>MaterialQuantity);
+                NotifyOfPropertyChange(() => MaterialQuantity);
                 NotifyOfPropertyChange(() => CanAddToCart);
             }
-		}
+        }
 
 
         public string SubTotal
@@ -99,7 +99,7 @@ namespace SportClub.UI.ViewModels
                 {
                     total += material.Material.Price * material.Quantity;
                 }
-                return  total.ToString("C");
+                return total.ToString("C");
             }
 
         }
@@ -139,9 +139,9 @@ namespace SportClub.UI.ViewModels
             }
 
             MaterialQuantity = 1;
-            NotifyOfPropertyChange(()=> SubTotal);
+            NotifyOfPropertyChange(() => SubTotal);
             NotifyOfPropertyChange(() => CanOrderMaterial);
-           
+
         }
 
         public bool CanRemoveFromCart
@@ -165,7 +165,7 @@ namespace SportClub.UI.ViewModels
             if (SelectedCartMaterial.Quantity > 1 && SelectedCartMaterial.Quantity > MaterialQuantity)
             {
                 SelectedCartMaterial.Quantity -= MaterialQuantity;
-                
+
             }
             else
             {
@@ -173,8 +173,8 @@ namespace SportClub.UI.ViewModels
             }
             MaterialQuantity = 1;
             NotifyOfPropertyChange(() => SubTotal);
-            NotifyOfPropertyChange(()=> CanOrderMaterial );
-           
+            NotifyOfPropertyChange(() => CanOrderMaterial);
+
         }
 
         public bool CanOrderMaterial
@@ -195,7 +195,7 @@ namespace SportClub.UI.ViewModels
         public void OrderMaterial()
         {
 
-           
+
             Guid orderNumber = Guid.NewGuid();
             string body = "Order: " + orderNumber + "\n\n";
 
@@ -203,15 +203,15 @@ namespace SportClub.UI.ViewModels
             _MailItem oMailItem = outlookApp.CreateItem(OlItemType.olMailItem);
 
             oMailItem.To = "onlineshop@Decathlon.be";
-            oMailItem.Subject = "Order: " + orderNumber +"  for: " + _club.Name;
+            oMailItem.Subject = "Order: " + orderNumber + "  for: " + _club.Name;
 
             foreach (var material in Cart)
             {
 
-                body += material.CartDisplay+ "\n" ;
+                body += material.CartDisplay + "\n";
             }
-            body += "\n Adres: \n" + _club.Address.Street + "  " + _club.Address.Number +"\n"+ _club.Address.PostCode + "\n" + _club.Address.City;
-            
+            body += "\n Adres: \n" + _club.Address.Street + "  " + _club.Address.Number + "\n" + _club.Address.PostCode + "\n" + _club.Address.City;
+
             oMailItem.Body = body;
 
             MessageBoxResult messageBox = MessageBox.Show("Is de bestelling compleet", "Order", MessageBoxButton.YesNo);
@@ -223,7 +223,7 @@ namespace SportClub.UI.ViewModels
             }
             else if (messageBox == MessageBoxResult.No)
             {
-               return;
+                return;
             }
         }
 

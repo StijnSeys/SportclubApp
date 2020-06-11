@@ -17,7 +17,7 @@ namespace SportClub.UI.Models
                 _quantity = value;
 
                 //to change the amount inside the cart and let the cartItems stay in the same position
-                PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(nameof(Quantity)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Quantity)));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CartDisplay)));
             }
         }

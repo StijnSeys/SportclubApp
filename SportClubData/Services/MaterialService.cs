@@ -7,7 +7,7 @@ using SportClub.Data.ServiceContracts;
 
 namespace SportClub.Data.Services
 {
-  public  class MaterialService : IMaterialService
+    public class MaterialService : IMaterialService
     {
 
         private readonly SportClubDBContext _context;

@@ -7,7 +7,7 @@ namespace SportClub.UI.EventModels
 
         public Club Club { get; private set; }
 
-        public string FilePath { get; set; }
+        public string FilePath { get; private set; }
 
         public MailEvent(Club club)
         {

@@ -4,11 +4,11 @@ using SportClub.UI.EventModels;
 
 namespace SportClub.UI.ViewModels
 {
-    public class LoginViewModel : Screen , IHandle<LoginEvent> 
-   {
+    public class LoginViewModel : Screen, IHandle<LoginEvent>
+    {
 
-		private string _clubName ;
-        private string _password ;
+        private string _clubName;
+        private string _password;
         private string _errorMessage;
         private string _okMessage;
 
@@ -23,13 +23,13 @@ namespace SportClub.UI.ViewModels
             _events = events;
 
             _events.Subscribe(this);
-         
+
 
         }
 
         public string ClubName
-		{
-			get { return _clubName; }
+        {
+            get { return _clubName; }
             set
             {
                 _clubName = value;
@@ -37,29 +37,29 @@ namespace SportClub.UI.ViewModels
                 NotifyOfPropertyChange();
                 NotifyOfPropertyChange(() => CanLogIn);
             }
-        
-		}
 
-		public string Password
-		{
-			get { return _password; }
+        }
+
+        public string Password
+        {
+            get { return _password; }
             set
             {
                 _password = value;
                 ErrorMessage = "";
                 NotifyOfPropertyChange();
-                NotifyOfPropertyChange(()=> CanLogIn);
+                NotifyOfPropertyChange(() => CanLogIn);
             }
-		}
+        }
 
         public string ErrorMessage
         {
             get { return _errorMessage; }
             set
             {
-               
+
                 _errorMessage = value;
-                NotifyOfPropertyChange(() => ErrorMessage);
+                NotifyOfPropertyChange();
             }
 
         }
@@ -70,13 +70,12 @@ namespace SportClub.UI.ViewModels
             {
 
                 _okMessage = value;
-                NotifyOfPropertyChange(() => OkMessage);
+                NotifyOfPropertyChange();
             }
 
         }
 
         //check for input before enable loginButton 
-
         public bool CanLogIn
         {
             get
@@ -89,45 +88,43 @@ namespace SportClub.UI.ViewModels
 
         public void LogIn()
         {
-            var sportClub =  _sportClubService.LoginSportClub(Password, ClubName);
+            var sportClub = _sportClubService.LoginSportClub(Password, ClubName);
 
-          if (sportClub == null)
-          {
-              //check if sportClub exists show appropriate message
-              var exist =  _sportClubService.CheckSportClub(ClubName);
-            if (exist)
+            if (sportClub == null)
             {
-                ErrorMessage = "Verkeerd paswoord";
-                return;
+                //check if sportClub exists show appropriate message
+                var exist = _sportClubService.CheckSportClub(ClubName);
+                if (exist)
+                {
+                    ErrorMessage = "Verkeerd paswoord";
+                    return;
+                }
+
+                ErrorMessage = " Deze sportclub heeft nog geen account";
+            }
+            else
+            {
+                //navigate to MainWindowViewmodel
+                _events.PublishOnUIThread(new MainScreenEvent(sportClub));
+
+                //clear the Textboxes for logout
+
+                ClubName = "";
+                Password = null;
+
+
             }
 
-            ErrorMessage = " Deze sportclub heeft nog geen account";
-          }
-          else
-          {
-              //navigate to MainWindowViewmodel
-              _events.PublishOnUIThread(new MainScreenEvent(sportClub));
-
-              //clear the Textboxes for logout
-         
-              ClubName = "";
-              Password = null;
-
-
-
-          }
-          
         }
 
         public void CreateAccount()
         {
 
-            
             //navigate to registerVieModel
             _events.PublishOnUIThread(new CreateAccountEvent());
-           
+
         }
-         
+
         public void Handle(LoginEvent message)
         {
             //need to set passwordbox to null or will not be checked for changes on return to the viewmodel=> long search
@@ -135,8 +132,8 @@ namespace SportClub.UI.ViewModels
 
             OkMessage = message.Text;
             ClubName = message.ClubName;
-           
+
 
         }
-   }
+    }
 }

@@ -21,14 +21,14 @@ namespace SportClub.UI.ViewModels
         private readonly IClubService _clubService;
         private readonly IEventAggregator _events;
         private readonly ISportService _sportService;
-        
+
 
 
         public RegisterViewModel(IClubService clubService, IEventAggregator events, ISportService sportService)
         {
             _sportService = sportService;
             _clubService = clubService;
-          
+
             _events = events;
             events.Subscribe(this);
         }
@@ -105,7 +105,7 @@ namespace SportClub.UI.ViewModels
 
         private string _street;
 
-        public string Street 
+        public string Street
         {
             get { return _street; }
             set
@@ -151,7 +151,7 @@ namespace SportClub.UI.ViewModels
             {
                 _postcode = value;
                 NotifyOfPropertyChange();
-                NotifyOfPropertyChange(()=> CanRegisterClub);
+                NotifyOfPropertyChange(() => CanRegisterClub);
             }
         }
 
@@ -160,7 +160,7 @@ namespace SportClub.UI.ViewModels
 
             get
             {
-                return (IList<Sport>) _sportService.GetSports();
+                return (IList<Sport>)_sportService.GetSports();
             }
 
         }
@@ -179,7 +179,7 @@ namespace SportClub.UI.ViewModels
                 NotifyOfPropertyChange();
             }
         }
-        
+
         public void ChangeClubLogo()
         {
 
@@ -203,7 +203,7 @@ namespace SportClub.UI.ViewModels
             {
                 bool output = false;
 
-                if (!string.IsNullOrEmpty(City) && !string.IsNullOrEmpty(ClubName) && !string.IsNullOrEmpty(Number) && !string.IsNullOrEmpty(Street) && !string.IsNullOrEmpty(PassWord) && !string.IsNullOrEmpty(PassWord2)&& PostCode > 0)
+                if (!string.IsNullOrEmpty(City) && !string.IsNullOrEmpty(ClubName) && !string.IsNullOrEmpty(Number) && !string.IsNullOrEmpty(Street) && !string.IsNullOrEmpty(PassWord) && !string.IsNullOrEmpty(PassWord2) && PostCode > 0)
                 {
                     output = true;
                 }
@@ -244,15 +244,15 @@ namespace SportClub.UI.ViewModels
                 {
                     sports.Add(sport);
                 }
-                
+
                 var address = new Address
-                 {
-                     AddressId = Guid.NewGuid(),
-                     Street = _street,
-                     Number = _number,
-                     City = _city,
-                     PostCode = _postcode
-                 };
+                {
+                    AddressId = Guid.NewGuid(),
+                    Street = _street,
+                    Number = _number,
+                    City = _city,
+                    PostCode = _postcode
+                };
 
                 var club = new Club
                 {
@@ -269,7 +269,7 @@ namespace SportClub.UI.ViewModels
                 _clubService.CreateSportClub(club);
 
                 _events.PublishOnUIThread(new LoginEvent("U bent geregistreerd en kan inloggen", _clubName));
-                
+
 
             }
 

@@ -34,7 +34,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-      
+
 
         <Button x:Name="BackButton" Grid.Column="0" Grid.Row="0" Width="100" Height="40" Content="Annuleer" HorizontalAlignment="Left" Margin="20" Cursor="Hand"/>
 
@@ -43,7 +43,7 @@
             <TextBlock  Text="Titel:" />
             <TextBox x:Name="WordTitle"  Margin="10"/>
             <TextBlock   Text="Inhoud:"/>
-        <TextBox x:Name="WordText"  Height="300" Width="550" Margin="10" AcceptsReturn="True"/>
+            <TextBox x:Name="WordText"  Height="300" Width="550" Margin="10" AcceptsReturn="True"/>
             <TextBlock  Text="Footer:" />
             <TextBox x:Name="WordFooter"  Margin="10"/>
         </StackPanel>

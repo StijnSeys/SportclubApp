@@ -5,32 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"  Background="LightBlue"
         Title="Sport" Height="800" Width="1200">
-
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-
         <DockPanel>
-      <Menu DockPanel.Dock="Top" FontSize="22" Background="CornflowerBlue"  >
-          <Menu.ItemsPanel>
-              <ItemsPanelTemplate>
-                  <DockPanel HorizontalAlignment="Stretch"/>
-              </ItemsPanelTemplate>
-          </Menu.ItemsPanel>
+            <Menu DockPanel.Dock="Top" FontSize="22" Background="CornflowerBlue"  >
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <DockPanel HorizontalAlignment="Stretch"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
                 <MenuItem Header="_Account" Foreground="White" FontWeight="Bold" Cursor="Hand">
                     <MenuItem x:Name="LoginScreen" Header="Uitloggen" FontSize="18" Background="LightCoral" Cursor="Hand"/>
-          </MenuItem >
+                </MenuItem >
                 <MenuItem Header="Admin" Foreground="White" FontWeight="Bold" Cursor="Hand" HorizontalAlignment="Right">
                     <MenuItem x:Name="AdminPage" Header="Update" FontSize="18" Cursor="Hand" Background="Brown"></MenuItem>
-          </MenuItem>
-      </Menu>
-        <Grid>
+                </MenuItem>
+            </Menu>
+            <Grid>
 
-            <Grid.Background>
-          <ImageBrush ImageSource="../Resources/Images/pngguru.com.png"/>
-      </Grid.Background>
+                <Grid.Background>
+                    <ImageBrush ImageSource="../Resources/Images/pngguru.com.png"/>
+                </Grid.Background>
 
-            <ContentControl x:Name="ActiveItem" Margin="5"></ContentControl>
-        </Grid>
-  </DockPanel>
+                <ContentControl x:Name="ActiveItem" Margin="5"></ContentControl>
+            </Grid>
+        </DockPanel>
     </ScrollViewer>
 
 </Window>

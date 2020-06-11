@@ -5,7 +5,7 @@ using SportClub.UI.EventModels;
 namespace SportClub.UI.ViewModels
 {
     //Conductor caliburn micro 
-    public class ShellViewModel : Conductor<object>, IHandle<CreateAccountEvent>, IHandle<MainScreenEvent>, IHandle<LoginEvent>,IHandle<MaterialEvent>,IHandle<MemberEvent>,IHandle<MailEvent>,IHandle<WordEvent>
+    public class ShellViewModel : Conductor<object>, IHandle<CreateAccountEvent>, IHandle<MainScreenEvent>, IHandle<LoginEvent>, IHandle<MaterialEvent>, IHandle<MemberEvent>, IHandle<MailEvent>, IHandle<WordEvent>
     {
         private readonly MainScreenViewModel _mainScreenViewModel;
         private readonly MaterialViewModel _materialViewModel;
@@ -13,14 +13,11 @@ namespace SportClub.UI.ViewModels
         private readonly MemberViewModel _memberViewModel;
         private readonly MailViewModel _mailViewModel;
         private readonly WordViewModel _wordViewModel;
-      
-     
-    
-        
-        public ShellViewModel(IEventAggregator events, MainScreenViewModel mainScreenViewModel, MaterialViewModel materialViewModel , LoginViewModel loginViewModel, MemberViewModel memberViewModel,MailViewModel mailViewModel,WordViewModel wordViewModel)
+
+
+        public ShellViewModel(IEventAggregator events, MainScreenViewModel mainScreenViewModel, MaterialViewModel materialViewModel, LoginViewModel loginViewModel, MemberViewModel memberViewModel, MailViewModel mailViewModel, WordViewModel wordViewModel)
         {
 
-           
             //Create instances to access the handlers inside the viewmodel
             _mainScreenViewModel = mainScreenViewModel;
             _materialViewModel = materialViewModel;
@@ -28,7 +25,6 @@ namespace SportClub.UI.ViewModels
             _memberViewModel = memberViewModel;
             _mailViewModel = mailViewModel;
             _wordViewModel = wordViewModel;
-           
 
 
             //Adding and listening to events 
@@ -39,7 +35,7 @@ namespace SportClub.UI.ViewModels
             ActivateItem(_loginViewModel);
         }
 
-        
+
         public sealed override void ActivateItem(object item)
         {
             base.ActivateItem(item);
@@ -48,9 +44,10 @@ namespace SportClub.UI.ViewModels
         //when logout is pressed
         public void LoginScreen()
         {
-            
+
             ActivateItem(_loginViewModel);
         }
+
         public void Handle(CreateAccountEvent message)
 
         {
@@ -60,25 +57,25 @@ namespace SportClub.UI.ViewModels
         }
         public void Handle(LoginEvent message)
         {
-            
+
             ActivateItem(_loginViewModel);
 
         }
 
         public void Handle(MainScreenEvent message)
         {
-            
+
             ActivateItem(_mainScreenViewModel);
         }
 
         public void Handle(MaterialEvent message)
         {
-           ActivateItem(_materialViewModel);
+            ActivateItem(_materialViewModel);
         }
 
         public void Handle(MemberEvent message)
         {
-           ActivateItem(_memberViewModel);
+            ActivateItem(_memberViewModel);
         }
 
         public void Handle(MailEvent message)

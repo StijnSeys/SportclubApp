@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SportClub.Data.EntityModels
 {
-   public class Sport
+    public class Sport
     {
         [Key]
         [Required]
@@ -16,6 +16,6 @@ namespace SportClub.Data.EntityModels
 
         public virtual IList<Club> SportClubs { get; set; }
 
-       public virtual ICollection<Member> Members { get; set; }
+        public virtual ICollection<Member> Members { get; set; }
     }
 }

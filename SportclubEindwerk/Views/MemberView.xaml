@@ -17,57 +17,59 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" MinHeight="50"/>
-                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Button Content="Hoofdmenu" Margin="10" Grid.ColumnSpan="2" Height="40" Width="150" HorizontalAlignment="Left" Cursor="Hand" x:Name="BackButton"/>
         <TextBlock Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Center" FontSize="32" Margin="20" Text="Leden beheer"/>
 
         <StackPanel Grid.Column="1" Grid.Row="2">
-        <TextBlock Margin="10 0" >Ledenlijst:</TextBlock>
-        <ListBox x:Name="MemberList"  Width="250" Height="300" ItemsSource="{Binding MemberList}" DisplayMemberPath="MemberDisplay" SelectedItem="{Binding SelectedMember}" Margin="10" />
+            <TextBlock Margin="10 0" >Ledenlijst:</TextBlock>
+            <ListBox x:Name="MemberList"  Width="250" Height="300" ItemsSource="{Binding MemberList}" DisplayMemberPath="MemberDisplay" SelectedItem="{Binding SelectedMember}" Margin="10" />
         </StackPanel>
-        <Button x:Name="UpdateMemberList" Grid.Column="1" Grid.Row="3" Margin="10" Width="200" Cursor="Hand" Padding="5">Laad nieuwe ledenlijst </Button>
-        
+        <Button x:Name="UpdateMemberList" Grid.Column="1" Grid.Row="3" Margin="10" Width="200" Cursor="Hand" Padding="5">Laad nieuwe ledenlijst</Button>
+
 
 
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" Grid.Column="4" Grid.Row="2" Margin="10">
-           
+
             <DockPanel>
                 <TextBlock HorizontalAlignment="Center" Margin="10">Persoonlijke gegevens:</TextBlock>
             </DockPanel>
 
             <DockPanel >
-           <TextBlock Margin="10" MinWidth="50">VoorNaam:</TextBlock>
-            <TextBox x:Name="FirstName" MinWidth="200" Margin="10" />
+                <TextBlock Margin="10" MinWidth="50">VoorNaam:</TextBlock>
+                <TextBox x:Name="FirstName" MinWidth="200" Margin="10" />
                 <TextBlock Margin="10" MinWidth="80">AchterNaam:</TextBlock>
-            <TextBox x:Name="LastName" MinWidth="200" Margin="10"/>
+                <TextBox x:Name="LastName" MinWidth="200" Margin="10"/>
             </DockPanel>
 
             <DockPanel>
-                    <DockPanel HorizontalAlignment="Center">
-                <TextBlock Margin="10" TextAlignment="Right">Email:</TextBlock>
-                <TextBox x:Name="Email" Width="250" Margin="10"/>
-                    </DockPanel>
-                <!--TODO--><!--
+                <DockPanel HorizontalAlignment="Center">
+                    <TextBlock Margin="10" TextAlignment="Right">Email:</TextBlock>
+                    <TextBox x:Name="Email" Width="250" Margin="10"/>
+                </DockPanel>
+                <!--TODO-->
+                <!--
                 <TextBlock Margin="10" MinWidth="80">Sport(en):</TextBlock>
-                <ListBox x:Name="MemberClubSports" Grid.Column="4" Grid.Row="6" SelectionMode="Multiple" Margin="10">--><!--
+                <ListBox x:Name="MemberClubSports" Grid.Column="4" Grid.Row="6" SelectionMode="Multiple" Margin="10">-->
+                <!--
                 </ListBox>-->
             </DockPanel>
 

@@ -5,7 +5,7 @@ using System.Windows.Controls;
 namespace Sportclub.UI.Helpers
 {
     //Helper class that makes sure u can get a property out of a passwordBox as a string
-    
+
     public static class PasswordBoxHelper
     {
         public static readonly DependencyProperty BoundPasswordProperty =
@@ -21,7 +21,7 @@ namespace Sportclub.UI.Helpers
             {
                 // this funny little dance here ensures that we've hooked the
                 // PasswordChanged event once, and only once.
-               box.PasswordChanged -= PasswordChanged;
+                box.PasswordChanged -= PasswordChanged;
                 box.PasswordChanged += PasswordChanged;
             }
 

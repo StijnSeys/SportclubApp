@@ -9,17 +9,17 @@ using SportClub.UI.EventModels;
 
 namespace SportClub.UI.ViewModels
 {
-    public class MainScreenViewModel : Screen , IHandle<MainScreenEvent>
+    public class MainScreenViewModel : Screen, IHandle<MainScreenEvent>
     {
 
-        
+
         private readonly IEventAggregator _event;
         private readonly IClubService _clubService;
 
 
-        public MainScreenViewModel( IEventAggregator events, IClubService clubService)
+        public MainScreenViewModel(IEventAggregator events, IClubService clubService)
         {
-           
+
             _event = events;
             events.Subscribe(this);
 
@@ -36,7 +36,7 @@ namespace SportClub.UI.ViewModels
             set
             {
                 _loginLogo = value;
-                NotifyOfPropertyChange(()=> LoginLogo);
+                NotifyOfPropertyChange(() => LoginLogo);
 
             }
         }
@@ -47,11 +47,11 @@ namespace SportClub.UI.ViewModels
             set
             {
                 _loggedInClub = value;
-                NotifyOfPropertyChange(()=> LoggedInClub);
+                NotifyOfPropertyChange(() => LoggedInClub);
             }
         }
 
-        
+
         public void OrderMaterial()
         {
 
@@ -92,7 +92,7 @@ namespace SportClub.UI.ViewModels
 
         public void Handle(MainScreenEvent message)
         {
-            
+
             LoginLogo = message.Club.ClubLogo;
             LoggedInClub = message.Club.Name;
 
@@ -152,7 +152,7 @@ namespace SportClub.UI.ViewModels
         //        Material material = new Material();
         //        material.MaterialName = key;
         //        material.Price = price;
-                
+
 
         //        _materialService.CreateMaterial(material);
 

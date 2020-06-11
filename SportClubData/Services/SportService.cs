@@ -6,10 +6,10 @@ using SportClub.Data.ServiceContracts;
 
 namespace SportClub.Data.Services
 {
-  public class SportService : ISportService
-  {
+    public class SportService : ISportService
+    {
 
-      private readonly SportClubDBContext _context;
+        private readonly SportClubDBContext _context;
 
         public SportService(SportClubDBContext context)
         {
@@ -17,16 +17,16 @@ namespace SportClub.Data.Services
             _context = context;
         }
 
-      public IList<Sport> GetSports()
-      {
-          var sports = _context.Sports;
-          return sports.ToList();
-      }
+        public IList<Sport> GetSports()
+        {
+            var sports = _context.Sports;
+            return sports.ToList();
+        }
 
-      public Sport GetSportByName(string name)
-      {
-          var sport = _context.Sports.FirstOrDefault(s => s.Name == name);
-          return sport;
-      }
-  }
+        public Sport GetSportByName(string name)
+        {
+            var sport = _context.Sports.FirstOrDefault(s => s.Name == name);
+            return sport;
+        }
+    }
 }

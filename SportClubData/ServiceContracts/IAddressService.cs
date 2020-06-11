@@ -2,10 +2,10 @@
 
 namespace SportClub.Data.ServiceContracts
 {
-  public interface IAddressService
-  {
+    public interface IAddressService
+    {
 
-      void CreateAddress(Address address);
+        void CreateAddress(Address address);
 
-  }
+    }
 }

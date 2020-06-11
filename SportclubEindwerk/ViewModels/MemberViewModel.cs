@@ -22,7 +22,7 @@ namespace SportClub.UI.ViewModels
         private readonly ISportService _sportService;
         private Club _club;
 
-        public MemberViewModel(IEventAggregator eventAggregator, IMemberService memberService,ISportService sportService)
+        public MemberViewModel(IEventAggregator eventAggregator, IMemberService memberService, ISportService sportService)
         {
             _event = eventAggregator;
             _memberService = memberService;
@@ -41,7 +41,7 @@ namespace SportClub.UI.ViewModels
             {
                 _memberList = value;
                 NotifyOfPropertyChange();
-               
+
             }
         }
 
@@ -62,7 +62,7 @@ namespace SportClub.UI.ViewModels
 
 
         private MemberListModel _selectedMember;
-        public MemberListModel  SelectedMember
+        public MemberListModel SelectedMember
         {
             get { return _selectedMember; }
             set
@@ -79,7 +79,7 @@ namespace SportClub.UI.ViewModels
                     City = _selectedMember.Member.Address.City;
                     Postcode = _selectedMember.Member.Address.PostCode;
                 }
-               
+
 
                 NotifyOfPropertyChange();
                 NotifyOfPropertyChange(() => CanEditMember);
@@ -204,7 +204,7 @@ namespace SportClub.UI.ViewModels
 
             MemberListModel changedMember = new MemberListModel
             {
-                 Member = selectedMember
+                Member = selectedMember
             };
 
             //change member in de existing list so the changes are visible for the user
@@ -236,7 +236,7 @@ namespace SportClub.UI.ViewModels
         public void DeleteMember()
         {
 
-            string sMessageBoxText = "Wilt u " +SelectedMember.Member.FirstName + " verwijderen?" ;
+            string sMessageBoxText = "Wilt u " + SelectedMember.Member.FirstName + " verwijderen?";
             string sCaption = "Verwijderen";
 
             MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
@@ -253,7 +253,7 @@ namespace SportClub.UI.ViewModels
                     //remove member in de existing list so the changes are visible for the user
                     foreach (var member in MemberList)
                     {
-                        if (member.Member ==  selectedMember)
+                        if (member.Member == selectedMember)
                         {
                             _club.Members.Remove(member.Member);
                         }
@@ -284,7 +284,7 @@ namespace SportClub.UI.ViewModels
             Postcode = 0;
             Number = null;
             SelectedMember = null;
-            MemberList= new List<MemberListModel>();
+            MemberList = new List<MemberListModel>();
             foreach (var member in _club.Members)
             {
                 var model = new MemberListModel
@@ -299,10 +299,10 @@ namespace SportClub.UI.ViewModels
 
         public void BackButton()
         {
-          
+
             _event.PublishOnUIThread(new MainScreenEvent(_club));
             ClearFields();
-         
+
         }
 
 
@@ -316,9 +316,9 @@ namespace SportClub.UI.ViewModels
                 Filter = "Excel Worksheets|*.xlsx"
             };
 
-            if (excelFile.ShowDialog()== true)
+            if (excelFile.ShowDialog() == true)
             {
-                
+
                 Excel.Application memberExcel = new Excel.Application();
 
                 Excel.Workbook workbook = memberExcel.Workbooks.Open(excelFile.FileName);
@@ -328,20 +328,21 @@ namespace SportClub.UI.ViewModels
                 Excel.Range range = worksheet.UsedRange;
 
                 IList<MemberListModel> excelMembers = new List<MemberListModel>();
-                
+
                 //start at 2 because excel starts counting at 1 and first line is not for data
                 //loop over the excel list en get the members
                 for (var i = 2; i < range.Rows.Count; i++)
                 {
                     MemberListModel excelMember = new MemberListModel
                     {
-                        Member = new Member {
+                        Member = new Member
+                        {
                             Address = new Address(),
-                         Sports = new List<Sport>(),
+                            Sports = new List<Sport>(),
 
-                         FirstName = range.Cells[i, 1].Value.ToString(),
-                         LastName = range.Cells[i, 2].Value.ToString(),
-                         Email = range.Cells[i, 3].Value.ToString()
+                            FirstName = range.Cells[i, 1].Value.ToString(),
+                            LastName = range.Cells[i, 2].Value.ToString(),
+                            Email = range.Cells[i, 3].Value.ToString()
                         }
                     };
 
@@ -365,7 +366,7 @@ namespace SportClub.UI.ViewModels
 
                         excelMember.Member.Sports.Add(sport);
                     }
-                    
+
                     excelMembers.Add(excelMember);
                 }
 
@@ -373,10 +374,10 @@ namespace SportClub.UI.ViewModels
 
                 //Db Task
                 //first own implementation of threads can and need to run in the background
-                Task update = new Task(UpdateMemberDb);  
-                 update.Start();
+                Task update = new Task(UpdateMemberDb);
+                update.Start();
 
-                 // make sure that excel is properly closed 
+                // make sure that excel is properly closed 
                 workbook.Close(true, null, null);
                 memberExcel.Quit();
 
@@ -388,67 +389,67 @@ namespace SportClub.UI.ViewModels
         }
 
         //method for task to add de new memberList to the database and make sure to have no duplicate data in database
-     private void UpdateMemberDb()
-     {
+        private void UpdateMemberDb()
+        {
 
-           var newMembers = MemberList.Select(member => member.Member).ToList();
+            var newMembers = MemberList.Select(member => member.Member).ToList();
 
-           var oldClubMembers = _club.Members.ToList();
+            var oldClubMembers = _club.Members.ToList();
 
-           //get the members to add to the database => dont add duplicate members
-           var updateList = newMembers.Where(m => oldClubMembers.All(mem => mem.Email != m.Email)).ToList();
-           
-          
-           //get the members to delete the sportClub or from the database
-          var removeList = oldClubMembers.Where(m => newMembers.All(mem => mem.Email != m.Email)).ToList();
+            //get the members to add to the database => dont add duplicate members
+            var updateList = newMembers.Where(m => oldClubMembers.All(mem => mem.Email != m.Email)).ToList();
 
 
-          //database calls
-          //create or update new members
-          foreach (var member in updateList)
-          {
-
-              var memberExist = _memberService.GetMember(member.MemberId);
-              if (memberExist != null)
-              {
-                 
-                memberExist.SportClubs.Add(_club); 
-
-                _memberService.UpdateMember(memberExist);
-                  
-              }
-              else
-              {
-                  member.Address.AddressId = Guid.NewGuid();
-                  member.MemberId = Guid.NewGuid();
-                  member.SportClubs= new List<Club>();
-                  member.SportClubs.Add(_club);
-                  _memberService.CreateMember(member);
-              }
-             
-          }
-
-          //delete or update old members
-          foreach (var member in removeList)
-          {
-              if (member.SportClubs.Count > 1)
-              {
-                  member.SportClubs.Remove(_club);
-                  _memberService.UpdateMember(member);
-              }
-              else
-              {
-                  _memberService.DeleteMember(member);
-              }
-               
-          }
-          
-
-          SelectedMember = null;
-     } 
+            //get the members to delete the sportClub or from the database
+            var removeList = oldClubMembers.Where(m => newMembers.All(mem => mem.Email != m.Email)).ToList();
 
 
-     public void Handle(MemberEvent message)
+            //database calls
+            //create or update new members
+            foreach (var member in updateList)
+            {
+
+                var memberExist = _memberService.GetMember(member.MemberId);
+                if (memberExist != null)
+                {
+
+                    memberExist.SportClubs.Add(_club);
+
+                    _memberService.UpdateMember(memberExist);
+
+                }
+                else
+                {
+                    member.Address.AddressId = Guid.NewGuid();
+                    member.MemberId = Guid.NewGuid();
+                    member.SportClubs = new List<Club>();
+                    member.SportClubs.Add(_club);
+                    _memberService.CreateMember(member);
+                }
+
+            }
+
+            //delete or update old members
+            foreach (var member in removeList)
+            {
+                if (member.SportClubs.Count > 1)
+                {
+                    member.SportClubs.Remove(_club);
+                    _memberService.UpdateMember(member);
+                }
+                else
+                {
+                    _memberService.DeleteMember(member);
+                }
+
+            }
+
+
+            SelectedMember = null;
+        }
+
+
+        public void Handle(MemberEvent message)
         {
             MemberList.Clear();
             if (message.Club.Members.Count != 0)
@@ -462,7 +463,7 @@ namespace SportClub.UI.ViewModels
 
                     MemberList.Add(model);
                 }
-                
+
             }
             _club = message.Club;
 

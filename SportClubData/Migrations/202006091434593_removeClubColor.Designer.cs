@@ -7,13 +7,13 @@ namespace SportClub.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class test3 : IMigrationMetadata
+    public sealed partial class removeClubColor : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(test3));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(removeClubColor));
         
         string IMigrationMetadata.Id
         {
-            get { return "202006081359487_test3"; }
+            get { return "202006091434593_removeClubColor"; }
         }
         
         string IMigrationMetadata.Source
