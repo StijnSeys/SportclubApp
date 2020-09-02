@@ -17,7 +17,7 @@ namespace SportClub.UI
     public class Bootstrapper : BootstrapperBase
     {
 
-        //dependency injection from caliburn micro
+        //dependency injection with caliburn micro
         private readonly SimpleContainer _container = new SimpleContainer();
 
         public Bootstrapper()
